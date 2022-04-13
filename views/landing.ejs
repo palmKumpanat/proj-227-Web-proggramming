@@ -1,0 +1,23 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/sort.ejs") %>
+
+    <div class="container">
+        <section class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+            <% products.forEach(function(products){ %>    
+
+                <div class="shop-content">
+                    <div class="product-box">  
+                        <img class="product-img" src="<%= products.url %>">
+                        <h2 class="product-title"> <%=products.name%></h2>
+                        <span class="price"><%=products.price%> .-</span>
+                        <i class="bx bxs-cart-add add-cart"></i>
+                        <a href="/<%= products._id %>" class="btn btn-sm btn-outline-secondary" id="btn">View More</a>
+                    </div><br><br>
+                </div>
+        
+            <% }) %> 
+        </section> 
+    </div>
+
+<%- include("partials/footer.ejs") %>

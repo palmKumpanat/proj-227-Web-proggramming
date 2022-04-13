@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PalmShop</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-sm navbar-light border-bottom" style="background-color: #c3f4fa;"> <a class="navbar-brand ml-2 font-weight-bold" href="/"><i class="bx bxs-shopping-bags" id="shop-icon"></i><span id="Palm">Palm</span><span id="Shop">Shop</span></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor" aria-controls="navbarColor" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    <div class="collapse navbar-collapse" id="navbarColor">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/new">Sell | Products</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item rounded bg-light search-nav-item"><input type="text" id="search" class="bg-light" placeholder="Search for item"><span class="fa fa-search text-muted"></span></li>
+            <li class="nav-item"><a class="nav-link" href="/login"><span class="fa fa-user-o"></span><span class="text">Login</span></a> </li>
+            <li class="bx bxs-cart" id="cart-icon"></li>
+            <div class="cart">
+                <h2 class="cart-title">Shopping Cart</h2>
+                <div class="cart-content">
+                  <div class="cart-box">
+                    <img src="https://images.asos-media.com/products/ted-baker-telvi-retro-runner-trainer-in-pale-blue/201621722-1-white?$n_640w$&wid=513&fit=constrain" class="cart-img">
+                    <div class="detail-box">
+                      <div class="cart-product-title">Ted Baker Telvi retro runner trainer in pale blue</div>
+                      <div class="cart-price">1250</div>
+                      <input type="number" value="1" class="cart-quantity">
+                    </div>
+                      <i class="bx bxs-trash-alt cart-remove"></i>
+                  </div>
+                </div>
+                <div class="total">
+                  <div class="total-title">Total :</div>
+                  <div class="total-price">0</div>
+                </div>
+                <button type="button" class="btn-buy">View Shopping Cart</button>
+                <i class="bx bx-x" id="close-cart"></i>
+            </div>
+        </ul>
+    </div>
+</nav>
+
+
+</body>
+</html>
