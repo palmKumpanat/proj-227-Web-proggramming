@@ -1,9 +1,11 @@
 <%- include("../partials/header.ejs") %>
 
+<a href="/" class="bx bx-arrow-back" id="btn-back"></a> 
+
     <div class="container">
         <div class="view-content">
-            <img  class="product-img-view" src="<%= product.url %>">
             <div class="block-all-details">
+                <img  class="product-img-view" src="<%= product.url %>">
                 <h2 class="product-title-view"> <%=product.name%></h2><br>
                 <span class="price-view">Price : <%=product.price%> .-</span><br><br><br>
                 <h3 class="head-details">PRODUCT DETAILS</h3><br>
@@ -21,6 +23,7 @@
         </div>
     </div>
 
-    <a href="/" class="bx bx-arrow-back" id="btn-back"></a>
+
+    
 
 <%- include("../partials/footer.ejs") %>

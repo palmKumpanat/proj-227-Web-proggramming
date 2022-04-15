@@ -13,10 +13,44 @@
 <body>
 
   <nav class="navbar navbar-expand-sm navbar-light border-bottom" style="background-color: #c3f4fa;"> <a class="navbar-brand ml-2 font-weight-bold" href="/"><i class="bx bxs-shopping-bags" id="shop-icon"></i><span id="Palm">Palm</span><span id="Shop">Shop</span></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor" aria-controls="navbarColor" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/new">Sell | Products</a>
+          </li>
+          <% if(!currentUser) { %>
+            <li class="nav-item"><a class="nav-link" href="/login"><span ></span><span class="text">Login</span></a> </li>
+            <li class="nav-item"><a class="nav-link" href="/register"><span></span><span class="text">Register</span></a> </li> 
+          <% } else { %>
+            <li class="nav-item"><a class="nav-link" href="#"><span></span><span class="text">Logged as <%= currentUser.username %></span></a> </li>
+            <li class="nav-item"><a class="nav-link" href="/logout"><span></span><span class="text">Log out</span></a> </li> 
+          <% } %>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search for item" aria-label="Search">
+          <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
+        <li class="bx bxs-cart" id="cart-icon"></li>
+      </div>
+    </div>
+  </nav><br>
+
+</body>
+</html>
+
+
+  <!-- <nav class="navbar navbar-expand-sm navbar-light border-bottom" style="background-color: #c3f4fa;"> <a class="navbar-brand ml-2 font-weight-bold" href="/"><i class="bx bxs-shopping-bags" id="shop-icon"></i><span id="Palm">Palm</span><span id="Shop">Shop</span></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor" aria-controls="navbarColor" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
     <div class="collapse navbar-collapse" id="navbarColor">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="/">Home</span></a>
           </li>
           <li class="nav-item">
@@ -52,11 +86,7 @@
                 </div>
                 <button type="button" class="btn-buy">View Shopping Cart</button>
                 <i class="bx bx-x" id="close-cart"></i>
-            </div>
-        </ul>
+            </div> -->
+        <!-- </ul>
     </div>
-</nav>
-
-
-</body>
-</html>
+</nav> --> 

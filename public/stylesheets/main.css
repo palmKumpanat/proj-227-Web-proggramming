@@ -19,6 +19,7 @@
 }
 
 .nav-link{
+
     font-size: 1rem;
     font-weight: 450;
 }
@@ -49,7 +50,7 @@ nav {
 
 .search-nav-item {
     margin-left: 280px;
-    margin-right: 200px;
+    margin-right: 100px;
     width: 300px
 }
 .fa-user-o{
@@ -252,48 +253,44 @@ nav {
 }
 
 .view-content{
+    position: relative;
     background-color: rgb(252, 248, 252);
     display: block;
     margin: 2.5%;
-    margin-left: -12%;
-    margin-top: 5%;
+    margin-left: -10%;
+    margin-top: 0.5%;
     padding: 5%;
-    width: 100rem;
+    width: 95rem;
 }
 
 .product-img-view{
-
+    display: inline-block;
     width: 35rem;
 }
 
 .product-title-view{
-
     font-size: 2rem;
 }
 
 .price-view{
-
     font-size: 1.8rem;
     color: rgb(139, 136, 136);
 }
 
 #btn-back{
-    position: absolute;
-    left: 3%;
-    top: 10%;
+    position: relative;
+    margin-top: 2%;
+    margin-left: 3%;
     font-size: 2rem;
     color: black;
 }
 
 .block-all-details{
-    display: block;
-    position: absolute;
-    left: 45%;
-    top: 28%;
+    display: inline-block;
 }
 
 .block-details-product{
-    display: block;
+    position: relative;
     width: 55rem;
 }
 
