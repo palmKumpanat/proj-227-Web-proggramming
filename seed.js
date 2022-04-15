@@ -44,6 +44,69 @@ const data = [
           price: "650", 
           url: "https://images.asos-media.com/products/calvin-klein-jeans-logo-trim-hoodie-in-grey/200815944-1-marblegrey?$n_640w$&wid=513&fit=constrain",
           details: "Nobody does casual-cool like Calvin Klein. The designer brand’s minimal aesthetic and iconic CK logo are an easy way to level up any look. Scroll our Calvin Klein at ASOS edit for casual dresses, T-shirts, jeans and jackets, as well as fresh loungewear options to keep your off-duty aesthetic on point. Back to basics? Check out our pick of its cult-status bras, briefs and lingerie sets, plus swimwear and accessories for all-year-round style points. " 
+      },
+
+      {
+        name: "AJ Morgan womens oversized square sunglasses in gold", 
+        price: "350", 
+        url: "https://images.asos-media.com/products/aj-morgan-womens-oversized-square-sunglasses-in-gold/23831613-1-gold1?$n_640w$&wid=513&fit=constrain",
+        details: "Creating a snappy range of fashion eyewear and sunglasses, American label AJ Morgan Eyewear has seen its lenses appear in cult films and television series such as, Demolition Man, Beverly Hills 90210, and Ugly Betty. Look to a distinctive collection, as oversized circle lens sunglasses sit alongside colourful print aviators and geek chic clear lens glasses in pastel shades. " 
+      },
+
+      {
+        name: "New Look round sunglasses in tortoise shell", 
+        price: "320", 
+        url: "https://images.asos-media.com/products/new-look-round-sunglasses-in-tortoise-shell/23154209-1-tortoiseshell?$n_640w$&wid=513&fit=constrain",
+        details: "Since setting up shop in the 60s, New Look has become a high-street classic known for creating universally loved, wardrobe-ready collections. Shop the New Look at ASOS edit, featuring everything from chic LBDs and printed dresses to all-important accessories and figure-flattering jeans (if you’re anything like us, you’re always on the hunt for those). While you’re there, check out the label’s cute-yet-classy tops and blouses for your next ‘jeans and a nice top’ day. " 
+      },
+
+      {
+        name: "Ray-Ban round sunglasses in black 0rb2180", 
+        price: "300", 
+        url: "https://images.asos-media.com/products/ray-ban-round-sunglasses-in-black-0rb2180/201777683-1-black?$n_640w$&wid=513&fit=constrain",
+        details: "First produced for the U.S. Air Force, Ray-Ban has been making iconic sunglasses since 1937. With a rich pop culture history, Ray-Ban has gained global recognition, a cult fan-base and A-list credentials. Opt for classic frames in Aviator, Wayfarer or Clubmaster styles. " 
+      },
+
+      {
+        name: "Nike bucket hat with logo in white", 
+        price: "300", 
+        url: "https://images.asos-media.com/products/nike-bucket-hat-with-logo-in-white/22496284-1-white?$n_640w$&wid=513&fit=constrain",
+        details: "Key players in everything activewear-related, it doesn’t get more iconic than Nike. Sporting some of the most wanted trainers in the game, browse Air Max 90s and Air Force 1s, as well as Blazer and Waffle One styles. Get off-duty looks down with tracksuits, T-shirts and accessories in our Nike at ASOS edit, or scroll performance leggings and sports bras from Nike Training and Nike Running for an extra dose of motivation. " 
+      },
+
+      {
+        name: "Jack & Jones logo cap in black", 
+        price: "300", 
+        url: "https://images.asos-media.com/products/jack-jones-logo-cap-in-black/201848775-1-black?$n_640w$&wid=513&fit=constrain",
+        details: "Founded in the 90s as a jeanswear brand, Danish label Jack & Jones has since gone on to expand its sartorial offering to include everything from jumpers, jackets and T-shirts to shoes, underwear and accessories (alongside more of its flex-worthy denim, of course). Scroll the Jack & Jones at ASOS edit to check out our latest drop of the brand’s laid-back pieces. " 
+      },
+
+      {
+        name: "Jordan baseball cap in white with jumpman logo", 
+        price: "300", 
+        url: "https://images.asos-media.com/products/jordan-baseball-cap-in-white-with-jumpman-logo/23553772-1-white?$n_640w$&wid=513&fit=constrain",
+        details: "Inspired by the legend and the court, Nike Jordan pushes the boundaries of sportswear and lifestyle apparel with its iconic trainers, clothing and accessories. After the release of the original Air Jordan trainers in 1984, the brand has gone from strength to strength, both on and off the court. Shop our Jordan at ASOS edit to find some of the freshest kicks and streetwear pieces, all emblazoned with the brand’s signature Jumpman logo. " 
+      },
+
+      {
+        name: "adidas Running arm phone holder in black", 
+        price: "750", 
+        url: "https://images.asos-media.com/products/adidas-running-arm-phone-holder-in-black/24316196-1-black?$n_640w$&wid=513&fit=constrain",
+        details: "adidas needs no introduction. The brand’s famous 3-Stripes can be seen on the track, field and in the latest streetwear trends. Scroll the adidas at ASOS edit to get your fix, from fresh trainers from the iconic Superstar, Stan Smith, Gazelle and Continental 80 collections to archive-inspired adidas Originals tracksuits, T-shirts and sweatshirts. And if you’re in need of some fresh kit, then cop yourself some sweat-wicking shorts, vests and compression tights from adidas Performance. " 
+      },
+
+      {
+        name: "Nike Club Fleece headband in dark pink", 
+        price: "550", 
+        url: "https://images.asos-media.com/products/nike-club-fleece-headband-in-dark-pink/24396731-1-pink?$n_640w$&wid=513&fit=constrain",
+        details: "Key players in everything activewear-related, it doesn’t get more iconic than Nike. Sporting some of the most wanted trainers in the game, browse Air Max 90s and Air Force 1s, as well as Blazer and Waffle One styles. Get off-duty looks down with tracksuits, T-shirts and accessories in our Nike at ASOS edit, or scroll performance leggings and sports bras from Nike Training and Nike Running for an extra dose of motivation. " 
+      },
+
+      {
+        name: "Puma Running phone holder in black", 
+        price: "650", 
+        url: "https://images.asos-media.com/products/puma-running-phone-holder-in-black/24308571-1-black?$n_640w$&wid=513&fit=constrain",
+        details: "Disrupting the game since 1948, PUMA is out to set and smash goals in its bid to be the fastest sports brand in the world. Scroll the PUMA at ASOS edit for the pieces we’re rating right now, from staple comfies like joggers, hoodies and sweatshirts to caps, bags and trainers. On that training hype? Check out our pick of its game-changing activewear, including sweat-wicking tops and shorts designed to level up your workouts. " 
       }
   ];
 
