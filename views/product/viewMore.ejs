@@ -4,21 +4,21 @@
 
     <div class="container">
         <div class="view-content">
+            <img  class="product-img-view" src="<%= product.url %>">
             <div class="block-all-details">
-                <img  class="product-img-view" src="<%= product.url %>">
-                <h2 class="product-title-view"> <%=product.name%></h2><br>
-                <span class="price-view">Price : <%=product.price%> .-</span><br><br><br>
-                <h3 class="head-details">PRODUCT DETAILS</h3><br>
+                <h2 class="product-title-view"> <%=product.name%></h2>
+                <p class="price-view">Price : <%=product.price%> .-</p>
+                <h3>PRODUCT DETAILS</h3>
                 <div class="block-details-product">
                     <span class="details-view"> <%=product.details%></span>
-                </div><br><br><br>
-                <h2>Reviews:</h2><br>
+
+                <h2 class="review">Reviews:</h2><br>
                     <% product.reviews.forEach(function(review){ %>
                 <p>
                     <strong> <%= review.author %> </strong> -  <%= review.text %> 
                 </p>
                 <% }) %>
-                <a href="/<%= product._id %>/reviews/new" class="btn btn-sm btn-outline-secondary">Write a Review</a><br><br>
+                <a href="/<%= product._id %>/reviews/new" class="btn btn-sm btn-outline-secondary">Write a Review</a>
             </div>
         </div>
     </div>
