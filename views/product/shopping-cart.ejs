@@ -1,0 +1,37 @@
+<%- include("../partials/header.ejs") %>
+
+<div class="container">
+    <div class="view-content">
+        <h2>Shopping Cart</h2><hr>
+        <% if(!products){ %>
+            <h1 class="no-item">No product in Cart</h1>
+        <% }else { %>
+        <% products.forEach(function(products){ %>  
+        <div class="cart-content">
+            <div class="cart-box">
+                <img src="<%= products.item.url %>" class="cart-img">
+                <div class="detail-box">
+                    <div class="cart-product-title"><%=  products.item.name %></div>
+                    <div class="cart-price"><%=products.price%> .-</div>
+                    <button class="button-Qty">
+                        <span class="badge"> <%= products.qty %></span>
+                     </button>
+                </div>
+                <a href="#" class="btn btn-dark btn-xs dropdown-toggle" id="cart-remove">Remove</a>
+            </div>
+            <hr>
+        </div>
+        <% }) %> 
+        <div class="total">
+            <div class="total-title">Total</div>
+            <div class="total-price"><%= session.cart.totalPrice %> .-</div>
+        </div>
+        <% } %>
+        <button type="button" class="btn-buy">Checkout</button>
+    </div>
+</div>
+
+
+    
+
+<%- include("../partials/footer.ejs") %>

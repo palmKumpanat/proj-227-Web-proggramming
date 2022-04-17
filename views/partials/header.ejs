@@ -37,56 +37,12 @@
           <input class="form-control me-2" type="search" placeholder="Search for item" aria-label="Search">
           <button class="btn btn-outline-primary" type="submit">Search</button>
         </form>
-        <li class="bx bxs-cart" id="cart-icon"></li>
+        <a href="/shopping-cart"
+         class="cart-shopping"> Shopping Cart
+        </a>
       </div>
     </div>
   </nav><br>
 
 </body>
 </html>
-
-
-  <!-- <nav class="navbar navbar-expand-sm navbar-light border-bottom" style="background-color: #c3f4fa;"> <a class="navbar-brand ml-2 font-weight-bold" href="/"><i class="bx bxs-shopping-bags" id="shop-icon"></i><span id="Palm">Palm</span><span id="Shop">Shop</span></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor" aria-controls="navbarColor" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-    <div class="collapse navbar-collapse" id="navbarColor">
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item ">
-            <a class="nav-link" href="/">Home</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/new">Sell | Products</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-            <li class="nav-item rounded bg-light search-nav-item"><input type="text" id="search" class="bg-light" placeholder="Search for item"><span class="fa fa-search text-muted"></span></li>
-            <% if(!currentUser) { %>
-              <li class="nav-item"><a class="nav-link" href="/login"><span class="fa fa-user-o"></span><span class="text">Login</span></a> </li>
-              <li class="nav-item"><a class="nav-link" href="/register"><span class="fa fa-user-1"></span><span class="text">Register</span></a> </li> 
-            <% } else { %>
-              <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-user-o"></span><span class="text">Logged as <%= currentUser.username %></span></a> </li>
-              <li class="nav-item"><a class="nav-link" href="/logout"><span class="fa fa-user-1"></span><span class="text">Log out</span></a> </li> 
-            <% } %>
-            <li class="bx bxs-cart" id="cart-icon"></li>
-            <div class="cart">
-                <h2 class="cart-title">Shopping Cart</h2>
-                <div class="cart-content">
-                  <div class="cart-box">
-                    <img src="https://images.asos-media.com/products/ted-baker-telvi-retro-runner-trainer-in-pale-blue/201621722-1-white?$n_640w$&wid=513&fit=constrain" class="cart-img">
-                    <div class="detail-box">
-                      <div class="cart-product-title">Ted Baker Telvi retro runner trainer in pale blue</div>
-                      <div class="cart-price">1250</div>
-                      <input type="number" value="1" class="cart-quantity">
-                    </div>
-                      <i class="bx bxs-trash-alt cart-remove"></i>
-                  </div>
-                </div>
-                <div class="total">
-                  <div class="total-title">Total :</div>
-                  <div class="total-price">0</div>
-                </div>
-                <button type="button" class="btn-buy">View Shopping Cart</button>
-                <i class="bx bx-x" id="close-cart"></i>
-            </div> -->
-        <!-- </ul>
-    </div>
-</nav> --> 

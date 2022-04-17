@@ -66,6 +66,27 @@ nav {
     margin: 10px;
 }
 
+.cart-shopping{
+    color: rgb(43, 41, 41);
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.button-Qty{
+    background-color: rgb(43, 41, 41);
+    width: 1.5rem;
+    border-radius: 50%;
+    font-size: 12px;
+    margin-left: 8px;
+    border: none;
+}
+
+.badge{
+    border: 50%;
+    color: white;
+}
+
 #cart-icon{
     font-size: 35px;
     position: relative;
@@ -148,22 +169,6 @@ nav {
     cursor: pointer;
 }
 
-.cart{
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 400px;
-    min-height: 100vh;
-    padding: 20px;
-    background-color: rgba(234, 255, 251, 1);
-    box-shadow: -2px 0 4px hsl(0 4% 15% / 10%);
-    z-index: 10;
-    transition: 0.3s;
-}
-
-.cart.active{
-    right: 0;
-}
 
 .cart-title{
     text-align: center;
@@ -205,9 +210,8 @@ nav {
     text-align: center;
 }
 
-.cart-remove{
-    font-size: 30px;
-    cursor: pointer;
+#cart-remove{
+    width: 10rem;
 }
 
 .total{
@@ -237,15 +241,18 @@ nav {
     cursor: pointer;
 }
 
-#close-cart{
-    position: absolute;
-    font-size: 1.5rem;
-    top: 1rem;
-    cursor: pointer;
-}
+
 
 #btn {
     width: 5.5rem;
+    height: 2.6rem;
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+}
+
+#btn-add{
+    width: 12rem;
     height: 2.6rem;
     position: absolute;
     bottom: 0;
@@ -306,4 +313,14 @@ nav {
 
 .review{
     margin-top: 20px;
+}
+
+.no-item{
+    margin: 10%;
+    text-align: center;
+}
+
+.block-qty{
+    width: 2rem;
+    color: black;
 }

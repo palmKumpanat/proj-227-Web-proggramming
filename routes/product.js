@@ -1,6 +1,7 @@
-const express  = require('express'),
-      router   = express.Router(),
-      Products  = require('../models/product');
+const express   = require('express'),
+      router    = express.Router(),
+      Products  = require('../models/product'),
+      Cart      = require('../models/cart');
 
 
 router.get("/", function(req, res){ // ส่งข้อมูลของสินค้าไปเเสดงใน forEach 
@@ -16,6 +17,33 @@ router.get("/", function(req, res){ // ส่งข้อมูลของส�
 
 router.get("/new", function(req, res){ // ส่งไปหน้าเพิ่มสินค้า ( Add Product )
     res.render("product/new.ejs");
+});
+
+
+router.get('/add-to-cart/:id', function(req, res, next){
+    var productId = req.params.id;
+    var cart = new Cart(req.session.cart ? req.session.cart :{});
+
+    Products.findById(productId, function(err, product){
+        if(err){
+            console.log(err);
+            return res.redirect('/');
+        }
+        else{
+            cart.add(product, product.id);
+            req.session.cart = cart;
+            console.log(req.session.cart);
+            res.redirect('/');
+        }
+    });
+});
+
+router.get('/shopping-cart', function(req, res, next){
+    if(!req.session.cart){
+        return res.render('product/shopping-cart', {products: null});
+    }
+    var cart = new Cart(req.session.cart);
+    res.render('product/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice, url: cart.url});
 });
 
 
@@ -48,5 +76,7 @@ router.get("/:id", function(req, res){      // ส่งข้อมูล id �
         }
     });
 });
+
+
 
 module.exports = router;

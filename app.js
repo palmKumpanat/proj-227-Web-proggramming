@@ -7,7 +7,9 @@ const   express         =   require("express"),
         Products        =   require('./models/product'),
         Review          =   require('./models/review'),
         User            =   require('./models/user'),
-        seedDB          =   require('./seed.js');
+        Cart            =   require('./models/cart'),
+        seedDB          =   require('./seed.js'),
+        session         =   require('express-session');
 
 const   indexRoutes     =   require('./routes/index'),
         productRoutes   =   require('./routes/product'),
@@ -19,17 +21,25 @@ app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({extened: true}));
 seedDB();
 
+
 app.use(require('express-session')({
     secret: 'secret word',
     resave: false,
     saveUninitialized: false
 }));
 
+
 app.use(passport.initialize());
 app.use(passport.session());
+
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next){
+    res.locals.session = req.session;
+    next();
+});
 
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
@@ -39,6 +49,8 @@ app.use(function(req, res, next){
 app.use('/', indexRoutes);
 app.use('/:id/reviews', reviewRoutes);
 app.use('/', productRoutes)
+
+
 
 app.listen(3000, function(){    // เปิด server รับ port 3000
     console.log("Server Activated.");
