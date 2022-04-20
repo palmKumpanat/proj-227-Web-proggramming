@@ -12,11 +12,12 @@ router.post('/register', function(req, res){
     let newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function(err, user){
         if(err){
-            console.log(err);
+            req.flash('error', err.message);
             return res.redirect('/register');
         }
         else{
             passport.authenticate('local')(req, res, function(){
+            req.flash('success', user.username + ', Welcome to PalmShop ');
             res.redirect('/');
             });
         }
@@ -30,12 +31,17 @@ router.get('/login', function(req, res){    // สร้าง rout ไปหน
 router.post('/login', passport.authenticate('local',
     {
         successRedirect: '/' ,
-        failureRedirect: '/login'
+        failureRedirect: '/login',
+        successFlash: true,
+        failureFlash: true,
+        successFlash: 'Successfully login',
+        failureFlash: 'Invalid username or password'
     }), function(req, res){
 });
 
 router.get('/logout', function(req, res){
     req.logout();
+    req.flash('success', 'Log you out successfully');
     res.redirect('/');
 })
 

@@ -4,6 +4,7 @@ const   express         =   require("express"),
         mongoose        =   require("mongoose"),
         passport        =   require('passport'),
         LocalStrategy   =   require('passport-local'),
+        flash           =   require('connect-flash'),
         Products        =   require('./models/product'),
         Review          =   require('./models/review'),
         User            =   require('./models/user'),
@@ -19,7 +20,8 @@ mongoose.connect('mongodb://localhost/PalmShop');
 app.set("view engine", "ejs");
 app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({extened: true}));
-seedDB();
+app.use(flash());
+// seedDB();
 
 
 app.use(require('express-session')({
@@ -27,6 +29,8 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false
 }));
+
+
 
 
 app.use(passport.initialize());
@@ -37,6 +41,9 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
     res.locals.session = req.session;
     next();
 });

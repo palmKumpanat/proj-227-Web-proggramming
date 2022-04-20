@@ -27,6 +27,9 @@ router.post("/",  middleware.isLoggedIn ,function(req, res){ // รับข้�
                     console.log(err);
                 }
                 else{
+                    review.author.id = req.user._id;
+                    review.author.username = req.user.username;
+                    review.save();
                     foundProduct.reviews.push(review);
                     foundProduct.save();
                     res.redirect("/"+foundProduct._id);

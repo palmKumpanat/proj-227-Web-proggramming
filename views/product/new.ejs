@@ -3,30 +3,30 @@
 <br><br>
 <div class="container">
 <h1>Add your product</h1><br>
-<form action="/" method="POST">
+<form action="/" method="POST" enctype="multipart/form-data">
 <div class="mb-3">
     <label class="form-label">Name</label>
-    <input type="text" class="form-control" name="name" placeholder="Product Name">
+    <input type="text" class="form-control" name="product[name]" placeholder="Product Name">
   </div>
 
 <div class="mb-3">
     <label class="form-label">Price</label>
-    <input type="text" class="form-control" name="price" placeholder="Price">
-  </div>
-
-<div class="mb-3">
-    <label class="form-label">URL</label>
-    <input type="text" class="form-control" name="url" placeholder="Image URL">
+    <input type="text" class="form-control" name="product[price]" placeholder="Price">
   </div>
 
   <div class="mb-3">
     <label class="form-label">categories</label>
-    <input type="text" class="form-control" name="categories" placeholder="categories">
+    <input type="text" class="form-control" name="product[categories]" placeholder="categories">
   </div>
 
 <div class="mb-3">
   <label class="form-label">Details</label>
-  <input type="text" class="form-control" name="details" placeholder="Details your product">
+  <input type="text" class="form-control" name="product[details]" placeholder="Details your product">
+</div>
+
+<div class="mb-3">
+  <label class="form-label">Image</label>
+  <input type="file" class="form-control" name="image" accept="image/*">
 </div>
 
 <button type="submit" class="btn btn-info">Submit</button>

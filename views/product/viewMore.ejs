@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="view-content">
-            <img  class="product-img-view" src="<%= product.url %>">
+            <img  class="product-img-view" src="<%= product.image %>">
             <div class="block-all-details">
                 <h2 class="product-title-view"> <%=product.name%></h2>
                 <p class="price-view">Price : <%=product.price%> .-</p>
@@ -15,12 +15,13 @@
                 <h2 class="review">Reviews:</h2><br>
                     <% product.reviews.forEach(function(review){ %>
                 <p>
-                    <strong> <%= review.author %> </strong> -  <%= review.text %> 
+                    <strong> <%= review.author.username %> </strong> -  <%= review.text %> 
                 </p>
                 <% }) %>
                 <a href="/<%= product._id %>/reviews/new" class="btn btn-sm btn-outline-secondary">Write a Review</a>
             </div>
         </div>
+        <p class="soldBy">Sold by  <%= product.author.username %></้>
     </div>
 
 

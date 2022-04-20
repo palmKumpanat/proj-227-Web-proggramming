@@ -1,5 +1,22 @@
 const express   = require('express'),
       router    = express.Router(),
+      multer    = require('multer'),
+      path      = require('path'),
+      storage   =  multer.diskStorage({
+                    destination: function(req, file, callback){
+                        callback(null,'./public/upload/');
+                    },
+                    filename: function(req, file, callback){
+                        callback(null, file.fieldname + '-' + Date.now()+ path.extname(file.originalname));
+                    }
+      }),
+      imageFilter = function(req, file, callback){
+          if(!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)){
+              return callback(new Error('Only jpg, jpeg, png and gif.'), false);
+          }
+          callback(null, true);
+      },
+      upload = multer({storage: storage, fileFilter: imageFilter}),
       Products  = require('../models/product'),
       User      = require('../models/user'),
       middleware = require('../middleware'),
@@ -44,7 +61,7 @@ router.get('/sort-high-to-low', function(req, res){
 
 
 
-router.get("/new", function(req, res){ // ส่งไปหน้าเพิ่มสินค้า ( Add Product )
+router.get("/new",middleware.isLoggedIn,function(req, res){ // ส่งไปหน้าเพิ่มสินค้า ( Add Product )
     res.render("product/new.ejs");
 });
 
@@ -86,14 +103,13 @@ router.get('/shopping-cart',middleware.isLoggedIn ,function(req, res, next){
 
 
 
-router.post("/", function(req, res){ // รับข้อมูลจาก form ที่เพิ่มสินค้า มาเเสดงผล สินค้า ( หน้าเเรก )
-    let name = req.body.name;
-    let price = req.body.price;
-    let url = req.body.url;
-    let categories = req.body.categories;
-    let details = req.body.details;
-    let newProduct = {name:name, price:price, url:url, categories:categories,details:details};
-    Products.create(newProduct, function(err, newlyAdded){
+router.post("/",middleware.isLoggedIn,upload.single('image'),function(req, res){ // รับข้อมูลจาก form ที่เพิ่มสินค้า มาเเสดงผล สินค้า ( หน้าเเรก )
+    req.body.product.image = '/upload/' + req.file.filename;
+    req.body.product.author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    Products.create(req.body.product, function(err, newlyAdded){
         if(err){
             console.log(err);
         }

@@ -133,6 +133,10 @@ nav {
     font-size: 1.5rem;
 }
 
+.soldBy{
+    margin-top: 5px;
+}
+
 .add-cart{
     font-size: 40px;
     text-align: center;
