@@ -1,7 +1,10 @@
 const express   = require('express'),
       router    = express.Router(),
       Products  = require('../models/product'),
-      Cart      = require('../models/cart');
+      User      = require('../models/user'),
+      middleware = require('../middleware'),
+      Cart      = require('../models/cart'),
+      Ccart     = require('../models/Ccart');
 
 
 router.get("/", function(req, res){ // ส่งข้อมูลของสินค้าไปเเสดงใน forEach 
@@ -15,12 +18,38 @@ router.get("/", function(req, res){ // ส่งข้อมูลของส�
     });
 });
 
+
+router.get('/sort-low-to-high', function(req, res){
+    Products.find({}).sort([['price', 1]]).exec(function(err, allproducts){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render("landing.ejs", {products: allproducts});
+        }
+    });
+});
+
+router.get('/sort-high-to-low', function(req, res){
+    Products.find({}).sort([['price', -1]]).exec(function(err, allproducts){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render("landing.ejs", {products: allproducts});
+        }
+    });
+});
+
+
+
+
 router.get("/new", function(req, res){ // ส่งไปหน้าเพิ่มสินค้า ( Add Product )
     res.render("product/new.ejs");
 });
 
 
-router.get('/add-to-cart/:id', function(req, res, next){
+router.get('/add-to-cart/:id',middleware.isLoggedIn, function(req, res, next){
     var productId = req.params.id;
     var cart = new Cart(req.session.cart ? req.session.cart :{});
 
@@ -47,7 +76,7 @@ router.get('/remove/:id', function(req, res, next){
     res.redirect('/shopping-cart');
 });
 
-router.get('/shopping-cart', function(req, res, next){
+router.get('/shopping-cart',middleware.isLoggedIn ,function(req, res, next){
     if(!req.session.cart){
         return res.render('product/shopping-cart', {products: null});
     }
@@ -61,8 +90,9 @@ router.post("/", function(req, res){ // รับข้อมูลจาก for
     let name = req.body.name;
     let price = req.body.price;
     let url = req.body.url;
+    let categories = req.body.categories;
     let details = req.body.details;
-    let newProduct = {name:name, price:price, url:url, details:details};
+    let newProduct = {name:name, price:price, url:url, categories:categories,details:details};
     Products.create(newProduct, function(err, newlyAdded){
         if(err){
             console.log(err);
@@ -87,5 +117,5 @@ router.get("/:id", function(req, res){      // ส่งข้อมูล id �
 });
 
 
-
 module.exports = router;
+

@@ -101,28 +101,6 @@ nav {
 }
 
 
-.block-select{
-    display: block;
-    width: 100%;
-    height: 20px;
-}
-
-#categories {
-    display: inline-block;
-    width: 200px;
-}
-
-
-#sorting {
-    display: inline-block;
-    width: 200px;
-}
-
-
-#filter {
-    display: inline-block;
-    width: 200px;
-}
 
 .shop-content {
     position: relative;

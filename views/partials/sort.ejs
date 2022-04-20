@@ -1,26 +1,29 @@
 
 <div class="block-select">
   <div class="container">
-  <div id="categories" class="border rounded p-1 m-1"> <span class="text-muted-categories">Categories</span> <select name="categories" id="Categories">
-    <option value="All"><b>All</b></option>
-    <option value="Men"><b>Shoes</b></option>
-    <option value="Women"><b>Clothing</b></option>
-    <option value="Sports"><b>Sunglasses</b></option>
-    <option value="Clothing"><b>Hat&Cap</b></option>
-    <option value="Bags"><b>Bags</b></option>
-  </select> </div>
+  <select name="forma" onchange="location = this.value;">
+      <option value="#">Categories</option>
+      <option value="/">All</option>
+      <option value="/Categories-shoes">Shoes</option>
+      <option value="#"> Clothing</option>
+      <option value="#"> sunglasses</option>
+      <option value="#"> Hat&Cap</option>
+      <option value="#"> Bags</option>
+     </select>
 
-  <div id="sorting" class="border rounded p-1 m-1"> <span class="text-muted-sort">Sort by</span> <select name="sort" id="sort">
-    <option value="popularity"><b>Popularity</b></option>
-    <option value="price l-to-h"><b>Price : Low to High</b></option>
-    <option value="price h-to-l"><b>Price : High to Low</b></option>
-  </select> </div>
+  <select name="forma" onchange="location = this.value;">
+    <option value="#">Sort By</option>
+    <option value="/">Popularity</option>
+    <option value="/sort-low-to-high">Price : Low to High</option>
+    <option value="/sort-high-to-low">  Price : High to Low</option>
+   </select>
 
-  <div id="filter" class="border rounded p-1 m-1"> <span class="text-muted-fill">Filter</span> <select name="filter" id="Filter">
-    <option value="All"><b> All </b></option>
-    <option value="between0-1500"><b> 0 - 1,500 </b></option>
-    <option value="than1500"><b>  > 1,500 </b></option>
-  </select> </div>
-  </div>
-</div>
+   <select name="forma" onchange="location = this.value;">
+    <option value="#">Filter</option>
+    <option value="/">All</option>
+    <option value="#h">Price : 0 - 1,500</option>
+    <option value="#">  Price : > 1,500</option>
+   </select>
+
+
 
