@@ -1,5 +1,6 @@
 const mongoose  = require('mongoose'),
       Products  = require('./models/product'),
+      Cart            =   require('./models/cart'),
       Review    = require('./models/review');
 
 // const data = [
@@ -126,7 +127,7 @@ const mongoose  = require('mongoose'),
 //   ];
 
 function seedDB(){
-    Products.remove({}, function(err){
+    Cart.remove({}, function(err){
         if(err){
             console.log(err);
         }
