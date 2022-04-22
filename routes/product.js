@@ -80,6 +80,9 @@ router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
                 }
                 else{
                     newCart.products.push(foundProduct);
+                    foundProduct.qty ++;
+                    newCart.totalprice = 0;
+                    newCart.totalprice += foundProduct.price;
                     newCart.save();
                     res.redirect('/'); 
                 }

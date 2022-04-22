@@ -79,7 +79,7 @@ const mongoose  = require('mongoose'),
 
 //       {
 //         name: "Nike bucket hat with logo in white", 
-//         price: "300", 
+//         price: "380", 
 //         url: "https://images.asos-media.com/products/nike-bucket-hat-with-logo-in-white/22496284-1-white?$n_640w$&wid=513&fit=constrain",
 //         categories : "Hat&Cap",
 //         details: "Key players in everything activewear-related, it doesn’t get more iconic than Nike. Sporting some of the most wanted trainers in the game, browse Air Max 90s and Air Force 1s, as well as Blazer and Waffle One styles. Get off-duty looks down with tracksuits, T-shirts and accessories in our Nike at ASOS edit, or scroll performance leggings and sports bras from Nike Training and Nike Running for an extra dose of motivation. " 
@@ -87,7 +87,7 @@ const mongoose  = require('mongoose'),
 
 //       {
 //         name: "Jack & Jones logo cap in black", 
-//         price: "300", 
+//         price: "350", 
 //         url: "https://images.asos-media.com/products/jack-jones-logo-cap-in-black/201848775-1-black?$n_640w$&wid=513&fit=constrain",
 //         categories : "Hat&Cap",
 //         details: "Founded in the 90s as a jeanswear brand, Danish label Jack & Jones has since gone on to expand its sartorial offering to include everything from jumpers, jackets and T-shirts to shoes, underwear and accessories (alongside more of its flex-worthy denim, of course). Scroll the Jack & Jones at ASOS edit to check out our latest drop of the brand’s laid-back pieces. " 
@@ -95,7 +95,7 @@ const mongoose  = require('mongoose'),
 
 //       {
 //         name: "Jordan baseball cap in white with jumpman logo", 
-//         price: "300", 
+//         price: "420", 
 //         url: "https://images.asos-media.com/products/jordan-baseball-cap-in-white-with-jumpman-logo/23553772-1-white?$n_640w$&wid=513&fit=constrain",
 //         categories : "Hat&Cap",
 //         details: "Inspired by the legend and the court, Nike Jordan pushes the boundaries of sportswear and lifestyle apparel with its iconic trainers, clothing and accessories. After the release of the original Air Jordan trainers in 1984, the brand has gone from strength to strength, both on and off the court. Shop our Jordan at ASOS edit to find some of the freshest kicks and streetwear pieces, all emblazoned with the brand’s signature Jumpman logo. " 

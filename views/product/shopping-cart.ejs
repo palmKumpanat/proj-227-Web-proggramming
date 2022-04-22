@@ -15,7 +15,7 @@
                     <div class="cart-product-title"><%= product.name %></div>
                     <div class="cart-price"> <%= product.price %> .-</div>
                     <button class="button-Qty">
-                        <span class="badge"></span>
+                        <span class="badge"><%= product.qty %></span>
                      </button>
                 </div>
                 <a href="#" class="btn btn-dark btn-xs dropdown-toggle" id="cart-remove">Remove</a>
@@ -25,7 +25,7 @@
         <% }) %> 
         <div class="total">
             <div class="total-title">Total</div>
-            <div class="total-price"> .-</div>
+            <div class="total-price"> <%= cart.totalprice %> .-</div>
         </div>
         <% } %>
         <button type="button" class="btn-buy">Checkout</button>
