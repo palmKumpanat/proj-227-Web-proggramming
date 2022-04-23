@@ -1,3 +1,5 @@
+const { redirect } = require('express/lib/response');
+
 const express   = require('express'),
       router    = express.Router(),
       multer    = require('multer'),
@@ -58,6 +60,66 @@ router.get('/sort-high-to-low', function(req, res){
     });
 });
 
+router.get('/find-Shoes', function(req, res){
+    Products.find({categories : "Shoes"}, function(err, foundProduct){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(foundProduct);
+            res.render('landing.ejs', {products: foundProduct});
+        }
+    });
+});
+
+router.get('/find-Clothing', function(req, res){
+    Products.find({categories : "Clothing"}, function(err, foundProduct){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(foundProduct);
+            res.render('landing.ejs', {products: foundProduct});
+        }
+    });
+});
+
+
+router.get('/find-sunglasses', function(req, res){
+    Products.find({categories : "sunglasses"}, function(err, foundProduct){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(foundProduct);
+            res.render('landing.ejs', {products: foundProduct});
+        }
+    });
+});
+
+router.get('/find-Hat&Cap', function(req, res){
+    Products.find({categories : "Hat&Cap"}, function(err, foundProduct){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(foundProduct);
+            res.render('landing.ejs', {products: foundProduct});
+        }
+    });
+});
+
+router.get('/find-Bags', function(req, res){
+    Products.find({categories : "Bags"}, function(err, foundProduct){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(foundProduct);
+            res.render('landing.ejs', {products: foundProduct});
+        }
+    });
+});
 
 
 
@@ -73,18 +135,32 @@ router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
         }
         else{
             const cart = {user : {id:req.user._id}};
-
-            Cart.create(cart, function(err, newCart){
+            Cart.findOne({user: {id:req.user._id}} ,function(err, foundCart){
                 if(err){
                     console.log(err);
                 }
                 else{
-                    newCart.products.push(foundProduct);
-                    foundProduct.qty ++;
-                    newCart.totalprice = 0;
-                    newCart.totalprice += foundProduct.price;
-                    newCart.save();
-                    res.redirect('/'); 
+                    if(!foundCart){
+                        Cart.create(cart, function(err, newCart){
+                            if(err){
+                                console.log(err);
+                            }
+                            else{
+                                newCart.products.push(foundProduct);
+                                newCart.products.qty ++;
+                                newCart.totalprice = 0;
+                                newCart.totalprice += foundProduct.price;
+                                newCart.save();
+                                res.redirect('/'); 
+                            }
+                        })
+                    }
+                    else{
+                        foundCart.products.push(foundProduct);
+                        foundCart.products.qty ++;
+                        foundCart.totalprice += foundProduct.price;
+                        foundCart.save();
+                    }
                 }
             })
         }
@@ -101,6 +177,49 @@ router.get("/shopping-cart",middleware.isLoggedIn,function(req, res){
         }
     });
 });
+
+// router.get('/remove/:id', function(req, res){
+//     Products.findById(req.params.id, function(err, foundProduct){
+//         if(err){
+//             console.log(err);
+//         }
+//         else{
+//             Cart.findOne({user: {id:req.user._id}}, function(err, foundCart){
+//                 if(err){
+//                     console.log(err);
+//                 }
+//                 else{
+//                     delete foundCart.foundProduct._id;
+//                     res.redirect('/');
+//                 }
+//             })
+//         }
+//     });
+// });
+
+
+
+// router.get('/remove/:id',function(req, res){
+//     Products.findById(req.params.id, function(err, foundProduct){
+//         if(err){
+//             console.log(err);
+//         }
+//         else
+//         Cart.findOne({user : {id : req.user._id}}, function(err, foundCart){
+//             if(err){
+//                 console.log(err);
+//             }
+//             else{
+//                 delete foundCart.foundProduct;
+//                 // foundCart.totalprice -= foundProduct.price;
+//                 // foundProduct.qty--;
+//                 // if(foundProduct.qty <= 0){
+//                 //     delete foundProduct ;
+//                 // }
+//             }
+//         })
+//     })
+// })
 
 
 // router.get('/add-to-cart/:id',middleware.isLoggedIn, function(req, res, next){
@@ -172,3 +291,40 @@ router.get("/:id", function(req, res){      // ส่งข้อมูล id �
 
 module.exports = router;
 
+
+// router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
+//     Products.findById(req.params.id, function(err, foundProduct){
+//         if(err){
+//             console.log(err);
+//             return res.redirect('/');
+//         }
+//         else{
+//             const cart = {user : {id:req.user._id}};
+//             Cart.findOne({user : {id : req.user._id}}), function(foundCart){
+//                 if(!foundCart){
+//                     Cart.create(cart, function(err, newCart){
+//                         if(err){
+//                             console.log(err);
+//                         }
+//                         else{
+//                             newCart.products.push(foundProduct);
+//                             foundProduct.qty ++;
+//                             newCart.totalprice = 0;
+//                             newCart.totalprice += foundProduct.price;
+//                             newCart.save();
+//                             res.redirect('/'); 
+//                         }
+//                     })
+//                 }
+//                 else{
+//                     foundCart.products.push(foundProduct);
+//                     foundProduct.qty ++;
+//                     newCart.totalprice = 0;
+//                     newCart.totalprice += foundProduct.price;
+//                     foundCart.save();
+//                     res.redirect('/'); 
+//                 }
+//             }
+//         }
+//     });
+// });
