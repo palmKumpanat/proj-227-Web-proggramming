@@ -178,24 +178,24 @@ router.get("/shopping-cart",middleware.isLoggedIn,function(req, res){
     });
 });
 
-// router.get('/remove/:id', function(req, res){
-//     Products.findById(req.params.id, function(err, foundProduct){
-//         if(err){
-//             console.log(err);
-//         }
-//         else{
-//             Cart.findOne({user: {id:req.user._id}}, function(err, foundCart){
-//                 if(err){
-//                     console.log(err);
-//                 }
-//                 else{
-//                     delete foundCart.foundProduct._id;
-//                     res.redirect('/');
-//                 }
-//             })
-//         }
-//     });
-// });
+router.get('/remove/:id', function(req, res){
+    Products.findById(req.params.id, function(err, foundProduct){
+        if(err){
+            console.log(err);
+        }
+        else{
+            Cart.findOne({user: {id:req.user._id}}, function(err, foundCart){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    foundCart.remove(foundProduct);
+                    res.redirect('/shopping-cart');
+                }
+            })
+        }
+    });
+});
 
 
 
