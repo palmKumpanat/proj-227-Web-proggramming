@@ -122,7 +122,6 @@ router.get('/find-Bags', function(req, res){
 });
 
 
-
 router.get("/new",middleware.isLoggedIn,function(req, res){ // ส่งไปหน้าเพิ่มสินค้า ( Add Product )
     res.render("product/new.ejs");
 });
@@ -189,14 +188,13 @@ router.get('/remove/:id', function(req, res){
                     console.log(err);
                 }
                 else{
-                    foundCart.remove(foundProduct);
+                    foundCart.remove(foundProduct); 
                     res.redirect('/shopping-cart');
                 }
             })
         }
     });
 });
-
 
 
 // router.get('/remove/:id',function(req, res){
@@ -290,41 +288,3 @@ router.get("/:id", function(req, res){      // ส่งข้อมูล id �
 
 
 module.exports = router;
-
-
-// router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
-//     Products.findById(req.params.id, function(err, foundProduct){
-//         if(err){
-//             console.log(err);
-//             return res.redirect('/');
-//         }
-//         else{
-//             const cart = {user : {id:req.user._id}};
-//             Cart.findOne({user : {id : req.user._id}}), function(foundCart){
-//                 if(!foundCart){
-//                     Cart.create(cart, function(err, newCart){
-//                         if(err){
-//                             console.log(err);
-//                         }
-//                         else{
-//                             newCart.products.push(foundProduct);
-//                             foundProduct.qty ++;
-//                             newCart.totalprice = 0;
-//                             newCart.totalprice += foundProduct.price;
-//                             newCart.save();
-//                             res.redirect('/'); 
-//                         }
-//                     })
-//                 }
-//                 else{
-//                     foundCart.products.push(foundProduct);
-//                     foundProduct.qty ++;
-//                     newCart.totalprice = 0;
-//                     newCart.totalprice += foundProduct.price;
-//                     foundCart.save();
-//                     res.redirect('/'); 
-//                 }
-//             }
-//         }
-//     });
-// });
