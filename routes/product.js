@@ -159,6 +159,7 @@ router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
                         foundCart.products.qty ++;
                         foundCart.totalprice += foundProduct.price;
                         foundCart.save();
+                        res.redirect('/'); 
                     }
                 }
             })
@@ -183,9 +184,6 @@ router.get('/checkout', function(req, res){
             console.log(err);
         }
         else{
-            foundCart.user.id = req.user._id;
-            foundCart.user.address = req.user.address;
-            foundCart.save();
             res.render('product/checkout.ejs', {cart : foundCart});
         }
     });

@@ -1,6 +1,7 @@
 const mongoose  = require('mongoose'),
       Products  = require('./models/product'),
-      Cart            =   require('./models/cart'),
+      Cart      = require('./models/cart'),
+      User      = require('./models/user'),
       Review    = require('./models/review');
 
 // const data = [
