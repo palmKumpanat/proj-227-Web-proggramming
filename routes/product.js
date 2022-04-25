@@ -177,6 +177,20 @@ router.get("/shopping-cart",middleware.isLoggedIn,function(req, res){
     });
 });
 
+router.get('/checkout', function(req, res){
+    Cart.findOne({user : {id : req.user._id}}).populate('products').populate('user').exec(function(err, foundCart){
+        if(err){
+            console.log(err);
+        }
+        else{
+            foundCart.user.id = req.user._id;
+            foundCart.user.address = req.user.address;
+            foundCart.save();
+            res.render('product/checkout.ejs', {cart : foundCart});
+        }
+    });
+});
+
 router.get('/remove/:id', function(req, res){
     Products.findById(req.params.id, function(err, foundProduct){
         if(err){
@@ -195,7 +209,6 @@ router.get('/remove/:id', function(req, res){
         }
     });
 });
-
 
 // router.get('/remove/:id',function(req, res){
 //     Products.findById(req.params.id, function(err, foundProduct){

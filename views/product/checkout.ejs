@@ -1,0 +1,38 @@
+<%- include("../partials/header.ejs") %>
+
+<div class="container">
+    <div class="view-content">
+        <h1>DELIVERY ADDRESS</h1>
+        <p>To place order, please add a delivery address</p><hr>
+        <h3>Shipping Address :</h3><br>
+        <h3 class="text-check"><%= cart.user.address %></h3>
+        <h3>Payment Type :</h3><br>
+        <h3 class="text-check">Credit cards</h3>
+        <p></p>
+    </div>
+
+    <div class="view-content">
+        <h1>Order Item</h1><hr>
+        <% cart.products.forEach(function(product){ %>  
+            <div class="cart-content">
+                <div class="cart-box">
+                    <img src="<%= product.image %>" class="cart-img">
+                    <div class="detail-box">
+                        <div class="cart-product-title"><%= product.name %></div>
+                        <div class="cart-price"> <%= product.price %> .-</div>
+                        <button class="button-Qty">
+                            <span class="badge"><%= product.qty %></span>
+                         </button>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <% }) %> 
+        </div>
+    </div>
+</div>
+
+
+    
+
+<%- include("../partials/footer.ejs") %>

@@ -306,3 +306,14 @@ nav {
     width: 2rem;
     color: black;
 }
+
+#btn-checkout{
+    margin-left: 50%;
+}
+
+.text-check{
+    background-color: white;
+    color: black;
+    font-weight: 50;
+    margin-left: 3%;
+}
