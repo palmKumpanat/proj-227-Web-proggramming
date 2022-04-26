@@ -8,7 +8,9 @@ const cartSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         },
-        address: String
+        address: String,
+        postalCode: String,
+        city : String
     },
 
     products: [

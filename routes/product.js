@@ -168,7 +168,7 @@ router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
 });
 
 router.get("/shopping-cart",middleware.isLoggedIn,function(req, res){
-    Cart.findOne({user : {id : req.user._id}}).populate('products').exec(function(err, foundCart){
+    Cart.findOne({user : {id : req.user._id}}).populate('products').populate('user').exec(function(err, foundCart){
         if(err){
             console.log(err);
         }
@@ -187,6 +187,7 @@ router.get('/checkout', function(req, res){
             foundCart.user.address = req.user.address;
             foundCart.user.postalCode = req.user.postalCode;
             foundCart.user.city = req.user.city;
+            foundCart.save();
             res.render('product/checkout.ejs', {cart : foundCart});
         }
     });
