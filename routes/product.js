@@ -184,6 +184,7 @@ router.get('/checkout', function(req, res){
             console.log(err);
         }
         else{
+            foundCart.user.address = req.user.address;
             res.render('product/checkout.ejs', {cart : foundCart});
         }
     });
