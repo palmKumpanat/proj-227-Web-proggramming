@@ -184,9 +184,9 @@ router.get('/checkout', function(req, res){
             console.log(err);
         }
         else{
-            // foundCart.user.address = req.user.address;
-            // foundCart.user.postalCode = req.user.postalCode;
-            // foundCart.user.city = req.user.city;
+            foundCart.user.address = req.user.address;
+            foundCart.user.postalCode = req.user.postalCode;
+            foundCart.user.city = req.user.city;
             // foundCart.save();
             res.render('product/checkout.ejs', {cart : foundCart});
         }
