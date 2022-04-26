@@ -4,12 +4,12 @@
     <div class="view-content">
         <h1>DELIVERY ADDRESS</h1>
         <p>To place order, please add a delivery address</p><hr>
-        <h3>Shipping Address :</h3><br>
-        <h3 class="text-check"><%= cart.user.address %> <%= cart.user.city %> <%= cart.user.postalCode %></h3>
-        <h3>Payment Type :</h3><br>
-        <h3 class="text-check">Credit cards</h3>
+        <h5>Shipping Address :</h5><br>
+        <h5 class="text-check"><%= cart.user.address %> <%= cart.user.city %> <%= cart.user.postalCode %></h5>
+        <h5>Payment Type :</h5><br>
+        <h5 class="text-check">Credit cards</h5>
         <p></p>
-    </div>
+    </div><br>
 
     <div class="view-content">
         <h1>Order Item</h1><hr>
@@ -28,7 +28,17 @@
                 <hr>
             </div>
             <% }) %> 
+        </div><br>
+
+        <div class="view-content">
+            <h1>Order Summary</h1><hr>
+            <h5>Merchandise Subtotal: <%= cart.totalprice %> .-</h5><br>
+            <h5>Shipping Total: <%= cart.Shipping %> .-</h5><br>
+            <h5>Total Payment: <%= cart.totalPayment %> .-</h5><br>
+            <p></p>
+            <a href="#" class="btn btn-secondary" id="btn-checkout">Place Order</a>
         </div>
+
     </div>
 </div>
 
