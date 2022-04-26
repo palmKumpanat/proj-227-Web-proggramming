@@ -185,7 +185,6 @@ router.get('/checkout', function(req, res){
         }
         else{
             foundCart.user.address = req.user.address;
-            foundCart.save();
             res.render('product/checkout.ejs', {cart : foundCart});
         }
     });
