@@ -9,7 +9,7 @@ router.get('/register', function(req, res){    // สร้าง rout ไปห
 });
 
 router.post('/register', function(req, res){
-    let newUser = new User({username: req.body.username, address: req.body.address});
+    let newUser = new User({username: req.body.username, address: req.body.address, postalCode: req.body.postalCode, city: req.body.city});
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             req.flash('error', err.message);
