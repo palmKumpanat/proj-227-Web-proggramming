@@ -100,6 +100,9 @@ nav {
     margin-top: 2%
 }
 
+.selete {
+    margin-right: 1%;
+}
 
 
 .shop-content {
@@ -308,7 +311,8 @@ nav {
 }
 
 #btn-checkout{
-    margin-left: 50%;
+    margin-left: 42%;
+    margin-right: 0.5%;
 }
 
 .text-check{
