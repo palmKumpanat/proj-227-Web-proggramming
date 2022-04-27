@@ -208,10 +208,15 @@ router.get('/remove/:id', function(req, res){
                     console.log(err);
                 }
                 else{
-                    if(foundCart){
+                    if(foundCart.products.length > 1){
                         foundCart.products.pull(foundProduct);
                         req.flash('success','Remove successfully!');
+                        foundCart.totalprice -= foundProduct.price;
                         foundCart.save();
+                        res.redirect('/shopping-cart');
+                    }
+                    else{
+                        foundCart.remove();
                         res.redirect('/shopping-cart');
                     }
                 }
@@ -219,65 +224,6 @@ router.get('/remove/:id', function(req, res){
         }
     });
 });
-
-// router.get('/remove/:id',function(req, res){
-//     Products.findById(req.params.id, function(err, foundProduct){
-//         if(err){
-//             console.log(err);
-//         }
-//         else
-//         Cart.findOne({user : {id : req.user._id}}, function(err, foundCart){
-//             if(err){
-//                 console.log(err);
-//             }
-//             else{
-//                 delete foundCart.foundProduct;
-//                 // foundCart.totalprice -= foundProduct.price;
-//                 // foundProduct.qty--;
-//                 // if(foundProduct.qty <= 0){
-//                 //     delete foundProduct ;
-//                 // }
-//             }
-//         })
-//     })
-// })
-
-
-// router.get('/add-to-cart/:id',middleware.isLoggedIn, function(req, res, next){
-//     var productId = req.params.id;
-//     var cart = new Cart(req.session.cart ? req.session.cart :{});
-
-//     Products.findById(productId, function(err, product){
-//         if(err){
-//             console.log(err);
-//             return res.redirect('/');
-//         }
-//         else{
-//             cart.add(product, product.id);
-//             req.session.cart = cart;
-//             console.log(req.session.cart);
-//             res.redirect('/');
-//         }
-//     });
-// });
-
-// router.get('/remove/:id', function(req, res, next){
-//     var productId = req.params.id;
-//     var cart = new Cart(req.session.cart ? req.session.cart :{});
-
-//     cart.removeProductInCart(productId);
-//     req.session.cart = cart;
-//     res.redirect('/shopping-cart');
-// });
-
-// router.get('/shopping-cart',middleware.isLoggedIn ,function(req, res, next){
-//     if(!req.session.cart){
-//         return res.render('product/shopping-cart', {products: null});
-//     }
-//     var cart = new Cart(req.session.cart);
-//     res.render('product/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice, url: cart.url});
-// });
-
 
 
 router.post("/",middleware.isLoggedIn,upload.single('image'),function(req, res){ // รับข้อมูลจาก form ที่เพิ่มสินค้า มาเเสดงผล สินค้า ( หน้าเเรก )
