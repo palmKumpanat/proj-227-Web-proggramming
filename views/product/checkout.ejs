@@ -32,6 +32,7 @@
 
         <div class="view-content">
             <h1>Order Summary</h1><hr>
+            <h5>Date : <%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(new Date()) %></h5><br>
             <h5>Merchandise Subtotal: <%= cart.totalprice %> .-</h5><br>
             <h5>Shipping Total: <%= cart.Shipping %> .-</h5><br>
             <h5>Total Payment: <%= cart.totalPayment %> .-</h5><br>
