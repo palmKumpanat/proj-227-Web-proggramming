@@ -208,8 +208,8 @@ router.get('/remove/:id', function(req, res){
                     console.log(err);
                 }
                 else{
-                    foundCart.remove({"_id" : foundProduct}); 
-                    req.flash('success', 'Remove successfully!');
+                    foundCart.remove(foundProduct);
+                    req.flash('success','Remove successfully!');
                     res.redirect('/shopping-cart');
                 }
             })
