@@ -150,6 +150,8 @@ router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
                                 newCart.totalprice += foundProduct.price;
                                 newCart.Shipping = 24;
                                 newCart.totalPayment = newCart.totalprice + newCart.Shipping;
+                                newCart.totalQty = 0;
+                                newCart.totalQty ++;
                                 newCart.save();
                                 req.flash('success', 'Add to shopping cart successfully!');
                                 res.redirect('/'); 
@@ -161,6 +163,7 @@ router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
                         foundCart.products.qty ++;
                         foundCart.totalprice += foundProduct.price;
                         foundCart.totalPayment = foundCart.totalprice + foundCart.Shipping;
+                        foundCart.totalQty++;
                         foundCart.save();
                         req.flash('success', 'Add to shopping cart successfully!');
                         res.redirect('/'); 

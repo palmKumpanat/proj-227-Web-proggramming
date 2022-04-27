@@ -2,11 +2,11 @@
 
 <div class="container">
     <div class="view-content">
-        <h2>Shopping Cart</h2><hr>
+        <h2>Shopping Cart</h2>
         <% if(!cart){ %>
-            <h1 class="no-item">No product in Cart</h1><hr>
+            <hr><h1 class="no-item">No product in Cart</h1><hr>
         <% }else { %>
-            <% console.log(cart.products) %>
+            <p>You Have <%= cart.totalQty %> items in Shopping Cart</p><hr>
         <% cart.products.forEach(function(product){ %>  
         <div class="cart-content">
             <div class="cart-box">

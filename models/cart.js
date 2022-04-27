@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cartSchema = new mongoose.Schema({
     totalprice : Number,
     Shipping : Number,
+    totalQty : Number,
     totalPayment : Number,
     user: {
         id: {
