@@ -198,7 +198,7 @@ router.get('/checkout', function(req, res){
 });
 
 router.get('/remove/:id', function(req, res){
-    Products.findOne({id:req.params.id}, function(err, foundProduct){
+    Products.findById(req.params.id, function(err, foundProduct){
         if(err){
             console.log(err);
         }
@@ -208,9 +208,12 @@ router.get('/remove/:id', function(req, res){
                     console.log(err);
                 }
                 else{
-                    foundCart.remove(foundProduct);
-                    req.flash('success','Remove successfully!');
-                    res.redirect('/shopping-cart');
+                    if(foundCart){
+                        foundCart.products.pull(foundProduct);
+                        req.flash('success','Remove successfully!');
+                        foundCart.save();
+                        res.redirect('/shopping-cart');
+                    }
                 }
             })
         }
