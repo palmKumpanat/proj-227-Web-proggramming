@@ -16,12 +16,16 @@ const cartSchema = new mongoose.Schema({
         city : String
     },
 
-    products: [
-        {
+    products: [{
+        id:{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Products'
-        }
-    ]
+        },
+        name: String,
+        image : String,
+        qty : Number,
+        price : Number
+    }]  
 });
 
 
