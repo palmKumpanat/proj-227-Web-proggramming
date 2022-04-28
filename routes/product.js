@@ -148,8 +148,6 @@ router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
                                 newCart.products.push(foundProduct);
                                 newCart.totalprice = 0;
                                 newCart.totalprice += foundProduct.price;
-                                newCart.Shipping = 24;
-                                newCart.totalPayment = newCart.totalprice + newCart.Shipping;
                                 newCart.totalQty = 0;
                                 newCart.totalQty ++;
                                 newCart.save();
@@ -161,7 +159,6 @@ router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
                     else{
                         foundCart.products.push(foundProduct);
                         foundCart.totalprice += foundProduct.price;
-                        foundCart.totalPayment = foundCart.totalprice + foundCart.Shipping;
                         foundCart.totalQty++;
                         foundCart.save();
                         req.flash('success', 'Add to shopping cart successfully!');
@@ -193,6 +190,8 @@ router.get('/checkout', function(req, res){
             foundCart.user.address = req.user.address;
             foundCart.user.postalCode = req.user.postalCode;
             foundCart.user.city = req.user.city;
+            foundCart.Shipping = 24;
+            foundCart.totalPayment = foundCart.totalprice + foundCart.Shipping;
             // foundCart.save();
             res.render('product/checkout.ejs', {cart : foundCart});
         }
@@ -239,7 +238,8 @@ router.get('/remove/:id', function(req, res){
                     }
                     else{
                         foundCart.remove();
-                        foundCart.totalQty++;
+                        foundCart.totalprice -= foundProduct.price;
+                        foundCart.totalQty--;
                         res.redirect('/shopping-cart');
                     }
                 }
