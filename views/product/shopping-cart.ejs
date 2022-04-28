@@ -14,9 +14,35 @@
                 <div class="detail-box">
                     <div class="cart-product-title"><%= product.name %></div>
                     <div class="cart-price"> <%= product.price %> .-</div>
+                
+                </div>
+                <div class="box-qty">
+                    <!-- <div href="/" class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                        <button  class="btn btn-link px-2"
+                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                          <i class="fas fa-minus">-</i>
+                        </button>
+  
+                        <input id="form1" min="1" name="qty" value="<%= product.qty %>" type="number"
+                          class="form-control form-control-sm" />
+  
+                        <button class="btn btn-link px-2"
+                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                          <i class="fas fa-plus">+</i>
+                        </button>
+                      </div> -->
+                    <button class="button-Qty">
+                        <a href="/shopping-cart/<%= product._id %>/minus-qty" class="icon-plus-minus">-</a>
+                    </button>   
+
                     <button class="button-Qty">
                         <span class="badge"><%= product.qty %></span>
                      </button>
+
+                     <button class="button-Qty">
+                        <a href="/shopping-cart/<%= product._id %>/plus-qty" class="icon-plus-minus">+</a>
+                     </button> 
+
                 </div>
                 <a href="/remove/<%= product._id %>" class="btn btn-dark btn-xs dropdown-toggle" id="cart-remove">Remove</a>
             </div>

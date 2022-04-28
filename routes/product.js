@@ -160,7 +160,6 @@ router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
                     }
                     else{
                         foundCart.products.push(foundProduct);
-                        foundCart.products.qty ++;
                         foundCart.totalprice += foundProduct.price;
                         foundCart.totalPayment = foundCart.totalprice + foundCart.Shipping;
                         foundCart.totalQty++;
@@ -169,7 +168,7 @@ router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
                         res.redirect('/'); 
                     }
                 }
-            })
+            });
         }
     });
 });
@@ -200,6 +199,25 @@ router.get('/checkout', function(req, res){
     });
 });
 
+// router.get('/shopping-cart/:id/plus-qty', function(req, res){
+//     Products.findById(req.params.id, function(err, foundProduct){
+//         if(err){
+//             console.log(err);
+//         }
+//         else{
+//             Cart.findOne({user: {id:req.user._id}}, function(err, foundCart){
+//                 if(err){
+//                     console.log(err);
+//                 }
+//                 else{
+//                     foundCart.products.
+//                     foundCart.save();
+//                 }
+//             })
+//         }
+//     })
+// })
+
 router.get('/remove/:id', function(req, res){
     Products.findById(req.params.id, function(err, foundProduct){
         if(err){
@@ -215,15 +233,17 @@ router.get('/remove/:id', function(req, res){
                         foundCart.products.pull(foundProduct);
                         req.flash('success','Remove successfully!');
                         foundCart.totalprice -= foundProduct.price;
+                        foundCart.totalQty--;
                         foundCart.save();
                         res.redirect('/shopping-cart');
                     }
                     else{
                         foundCart.remove();
+                        foundCart.totalQty++;
                         res.redirect('/shopping-cart');
                     }
                 }
-            })
+            });
         }
     });
 });
