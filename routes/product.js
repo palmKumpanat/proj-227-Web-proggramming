@@ -151,7 +151,6 @@ router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
                                 newCart.totalprice += foundProduct.price * foundProduct.qty;
                                 newCart.totalQty = 0;
                                 newCart.totalQty ++;
-                                newCart.products.qty = 1;
                                 newCart.save();
                                 req.flash('success', 'Add to shopping cart successfully!');
                                 res.redirect('/'); 
@@ -211,8 +210,36 @@ router.get('/checkout', function(req, res){
 //                     console.log(err);
 //                 }
 //                 else{
-//                     // foundCart.products.qty++;
-//                     // foundCart.totalprice += foundCart.products.price;
+//                     // foundProduct.qty++;
+//                     // foundProduct.totalPrice = foundProduct.price;
+//                     // foundProduct.totalPrice += foundProduct.price;
+//                     // foundProduct.save();
+//                     res.redirect('/shopping-cart');
+//                 }
+//             })
+//         }
+//     })
+// })
+
+// router.get('/shopping-cart/:id/plus-qty', function(req, res){
+//     req.body.products = {
+//         id: req.params.id,
+//         name: req.params.name,
+//         image : req.params.image,
+//         qty : req.params.qty,
+//         price : req.params.price
+//     }
+//     Products.find(req.body.products, function(err, products){
+//         if(err){
+//             console.log(err);
+//         }
+//         else{
+//             Cart.findOne({user: {id:req.user._id}}, function(err, foundCart){
+//                 if(err){
+//                     console.log(err);
+//                 }
+//                 else{
+//                     foundCart.products.qty++;
 //                     foundCart.save();
 //                     res.redirect('/shopping-cart');
 //                 }
@@ -220,6 +247,7 @@ router.get('/checkout', function(req, res){
 //         }
 //     })
 // })
+
 
 // router.get('/shopping-cart/:id/minus-qty', function(req, res){
 //     Products.findById(req.params.id, function(err, foundProduct){

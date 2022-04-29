@@ -17,14 +17,14 @@ const cartSchema = new mongoose.Schema({
     },
 
     products: [{
-        id:{
+        id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Products'
         },
-        name: String,
+        name : String,
         image : String,
         qty : Number,
-        price : Number
+        price : Number,
     }]  
 });
 
