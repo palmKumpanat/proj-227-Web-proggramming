@@ -37,7 +37,44 @@ router.post("/",  middleware.isLoggedIn ,function(req, res){ // รับข้�
             });
         }
     });
-}); 
+});
+
+router.get('/:review_id/edit-review', middleware.checkReviewOwner,function(req, res){
+    Review.findById(req.params.review_id, function(err, foundReview){
+        if(err){
+            console.log(err);
+            res.redirect('back');
+        }
+        else{
+            res.render('reviews/edit.ejs', {product_id:req.params.id , review: foundReview});
+        }
+    });
+});
+
+router.put('/:review_id', middleware.checkReviewOwner, function(req, res){
+    Review.findByIdAndUpdate(req.params.review_id, req.body.review , function(err, updatedReview){
+        if(err){
+            console.log(err);
+            res.redirect('back');
+        }
+        else{
+            res.redirect('/'+req.params.id);
+        }
+    });
+});
+
+router.delete('/:review_id',middleware.checkReviewOwner, function(req, res){
+    Review.findByIdAndRemove(req.params.review_id , function(err){
+        if(err){
+            req.flash('error', "There are something wrong!");
+            res.redirect('/'+req.params.id);
+        }
+        else{
+            req.flash('success', "Your review was deleted.");
+            res.redirect('/'+req.params.id);
+        }
+    });
+});
 
 
 module.exports = router;

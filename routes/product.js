@@ -1,4 +1,5 @@
 const { redirect } = require('express/lib/response');
+const { off } = require('process');
 const product = require('../models/product');
 
 const express   = require('express'),
@@ -335,6 +336,44 @@ router.get("/:id", function(req, res){      // ส่งข้อมูล id �
         }
     });
 });
+
+router.get('/:id/edit-product',middleware.checkProductOwner, function(req, res){
+    Products.findById(req.params.id, function(err, foundProduct){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render("product/edit.ejs", {product: foundProduct});
+        }
+    });
+});
+
+router.put('/:id',upload.single('image'), function(req, res){
+    if(req.file){
+        req.body.product.image = '/upload/'+req.file.filename;
+    }
+    Products.findByIdAndUpdate(req.params.id, req.body.product, function(err, updatedProduct){
+        if(err){
+            console.log(err);
+            res.redirect('/');
+        }
+        else{
+            res.redirect('/'+req.params.id);
+        }
+    })
+})
+
+router.delete('/:id', middleware.checkProductOwner,function(req, res){
+    Products.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            console.log(err);
+            res.redirect('/');
+        }
+        else{
+            res.redirect('/');
+        }
+    })
+})
 
 
 module.exports = router;

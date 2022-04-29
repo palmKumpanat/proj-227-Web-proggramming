@@ -1,0 +1,18 @@
+<%- include("../partials/header.ejs") %>
+
+<br><br>
+<div class="container">
+<h1>Edit your Review</h1><br>
+<form action="/<%= product_id %>/reviews/<%= review._id %>?_method=PUT" method="POST">
+
+<div class="mb-3">
+    <label class="form-label">Review</label>
+    <input type="text" class="form-control" name="review[text]" placeholder="<%= review.text %>", value="<%= review.text %>">
+  </div>
+
+<button type="submit" class="btn btn-info">Submit</button>
+<a href="/<%= product_id %>">Back</a>
+</form>
+</div>
+
+<%- include("../partials/footer.ejs") %>

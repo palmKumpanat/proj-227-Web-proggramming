@@ -5,6 +5,7 @@ const   express         =   require("express"),
         passport        =   require('passport'),
         LocalStrategy   =   require('passport-local'),
         flash           =   require('connect-flash'),
+        methodOverride  =   require('method-override'),
         Products        =   require('./models/product'),
         Review          =   require('./models/review'),
         User            =   require('./models/user'),
@@ -20,6 +21,7 @@ mongoose.connect('mongodb://localhost/PalmShop');
 app.set("view engine", "ejs");
 app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({extened: true}));
+app.use(methodOverride('_method'));
 app.use(flash());
 //seedDB();
 

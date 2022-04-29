@@ -336,3 +336,11 @@ nav {
     font-weight: 50;
     margin-left: 3%;
 }
+
+#delete-form{
+    display: inline;
+}
+
+#write-review{
+    margin-bottom: 20px;
+}

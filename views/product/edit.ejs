@@ -1,0 +1,43 @@
+<%- include("../partials/header.ejs") %>
+
+<br><br>
+<div class="container">
+<h1>Edit your product</h1><br>
+<form action="/<%= product._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+<div class="mb-3">
+    <label class="form-label">Name</label>
+    <input type="text" class="form-control" name="product[name]" placeholder="<%= product.name %>", value="<%= product.name %>">
+  </div>
+
+<div class="mb-3">
+    <label class="form-label">Price</label>
+    <input type="text" class="form-control" name="product[price]" placeholder="<%= product.price %>", value="<%= product.price %>">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">categories</label>
+    <input type="text" class="form-control" name="product[categories]" placeholder="<%= product.categories %>", value="<%= product.categories %>">
+  </div>
+
+<div class="mb-3">
+  <label class="form-label">Details</label>
+  <input type="text" class="form-control" name="product[details]" placeholder="<%= product.details %>", value="<%= product.details %>">
+</div>
+
+<div class="mb-3">
+  <label class="form-label">Quantity</label>
+  <input type="text" class="form-control" name="product[qty]" placeholder="<%= product.qty %>", value="<%= product.qty %>">
+</div>
+
+<div class="mb-3">
+  <label class="form-label">Image</label>
+  <img src="<%= product.image %>" height="300px">
+  <input type="file" class="form-control" name="image" accept="image/*">
+</div>
+
+<button type="submit" class="btn btn-info">Submit</button>
+<a href="/">Back</a>
+</form>
+</div>
+
+<%- include("../partials/footer.ejs") %>
