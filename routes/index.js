@@ -1,6 +1,23 @@
 const express  = require('express'),
       router   = express.Router(),
       User     = require('../models/user'),
+      multer    = require('multer'),
+      path      = require('path'),
+      storage   =  multer.diskStorage({
+                    destination: function(req, file, callback){
+                        callback(null,'./public/upload/');
+                    },
+                    filename: function(req, file, callback){
+                        callback(null, file.fieldname + '-' + Date.now()+ path.extname(file.originalname));
+                    }
+      }),
+      imageFilter = function(req, file, callback){
+          if(!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)){
+              return callback(new Error('Only jpg, jpeg, png and gif.'), false);
+          }
+          callback(null, true);
+      },
+      upload = multer({storage: storage, fileFilter: imageFilter}),
       passport = require('passport');
 
 
@@ -8,8 +25,19 @@ router.get('/register', function(req, res){    // สร้าง rout ไปห
     res.render("register.ejs");
 });
 
-router.post('/register', function(req, res){
-    let newUser = new User({username: req.body.username, address: req.body.address, postalCode: req.body.postalCode, city: req.body.city});
+router.post('/register', upload.single('profileImage'), function(req, res){
+    req.body.profileImage = '/upload'+req.file.filename;
+    let newUser = new User
+    ({  
+                            username: req.body.username,
+                            firstName : req.body.firstName,
+                            lastName  : req.body.lastName,
+                            email : req.body.email,
+                            profileImage : req.body.profileImage,
+                            address: req.body.address,
+                            postalCode: req.body.postalCode,
+                            city: req.body.city
+    });
     if(req.body.adminCode === 'topsecret'){
         newUser.isAdmin = true;
     }

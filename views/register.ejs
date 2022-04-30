@@ -3,7 +3,7 @@
 <br><br>
 <div class="container">
 <h1>Register</h1><br>
-<form action="/register" method="POST">
+<form action="/register" method="POST" enctype="multipart/form-data">
 
 <div class="mb-3">
     <label class="form-label">Username</label>
@@ -13,6 +13,21 @@
 <div class="mb-3">
     <label class="form-label">Password</label>
     <input type="password" class="form-control" name="password" placeholder="Your password">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">firstname</label>
+    <input type="text" class="form-control" name="firstName" placeholder="Your firstname">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">lastname</label>
+    <input type="text" class="form-control" name="lastName" placeholder="Your lastname">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">E-mail</label>
+    <input type="email" class="form-control" name="email" placeholder="Your E-mail address">
   </div>
 
   <div class="mb-3">
@@ -28,6 +43,11 @@
   <div class="mb-3">
     <label class="form-label">City</label>
     <input type="text" class="form-control" name="city" placeholder="Your city">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Profile image</label>
+    <input type="file" class="form-control" name="profileImage" accept="image/*">
   </div>
 
 <button type="submit" class="btn btn-info">Register</button>
