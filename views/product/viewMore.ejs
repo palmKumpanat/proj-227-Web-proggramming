@@ -11,7 +11,7 @@
                 <h3>PRODUCT DETAILS</h3>
                 <div class="block-details-product">
                     <span class="details-view"> <%=product.details%></span><br><br>
-                <% if(currentUser && product.author.id.equals(currentUser._id)){ %>
+                <% if(currentUser && product.author.id.equals(currentUser._id) || (currentUser && currentUser.isAdmin)){ %>
                 <a href="/<%= product._id %>/edit-product" class="btn btn-sm btn-outline-secondary">Edit</a>
                 <form id="delete-form" action="/<%= product._id %>?_method=DELETE" method="POST">
                     <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
@@ -24,7 +24,7 @@
                     <strong> <%= review.author.username %> </strong> -  <%= review.text %> 
 
                 </p>
-                <% if(currentUser && review.author.id.equals(currentUser._id)){ %>
+                <% if(currentUser && review.author.id.equals(currentUser._id) || (currentUser && currentUser.isAdmin)){ %>
                     <a href="/<%= product._id %>/reviews/<%= review._id %>/edit-review" class="btn btn-sm btn-outline-secondary">Edit</a>
                     <form id="delete-form" action="/<%= product._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
                         <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>

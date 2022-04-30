@@ -11,7 +11,7 @@ middlewareObj.checkProductOwner = function(req, res, next){
                 res.redirect('back');
             }
             else{
-                if(foundProduct.author.id.equals(req.user._id)){
+                if(foundProduct.author.id.equals(req.user._id) || req.user.isAdmin){
                     next();
                 }
                 else{
@@ -34,7 +34,7 @@ middlewareObj.checkReviewOwner = function(req, res, next){
                 res.redirect('back');
             }
             else{
-                if(foundReview.author.id.equals(req.user._id)){
+                if(foundReview.author.id.equals(req.user._id) || req.user.isAdmin){
                     next();
                 }
                 else{
