@@ -26,7 +26,7 @@ router.get('/register', function(req, res){    // สร้าง rout ไปห
 });
 
 router.post('/register', upload.single('profileImage'), function(req, res){
-    req.body.profileImage = '/upload'+req.file.filename;
+    req.body.profileImage = '/upload/'+req.file.filename;
     let newUser = new User
     ({  
                             username: req.body.username,
@@ -74,6 +74,19 @@ router.get('/logout', function(req, res){
     req.logout();
     req.flash('success', 'Log you out successfully');
     res.redirect('/');
-})
+});
+
+router.get('/user/:id', function(req, res){
+    User.findById(req.params.id, function(err, foundUser){
+        if(err){
+            console.log(err);
+            req.flash('error', 'There is something wrong!');
+            return res.redirect('/');
+        }
+        else{
+            res.render('user/show.ejs', {user : foundUser});
+        }
+    });
+});
 
 module.exports = router;

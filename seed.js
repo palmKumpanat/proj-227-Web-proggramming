@@ -71,7 +71,7 @@ const mongoose  = require('mongoose'),
 //       },
 
 //       {
-//         name: "Ray-Ban round sunglasses in black 0rb2180", 
+//         name: "Ray-Ban round sunglasses in black ", 
 //         price: "300", 
 //         url: "https://images.asos-media.com/products/ray-ban-round-sunglasses-in-black-0rb2180/201777683-1-black?$n_640w$&wid=513&fit=constrain",
 //         categories : "sunglasses",
@@ -128,7 +128,7 @@ const mongoose  = require('mongoose'),
 //   ];
 
 function seedDB(){
-    Cart.remove({}, function(err){
+        Cart.remove({}, function(err){
         if(err){
             console.log(err);
         }

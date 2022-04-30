@@ -30,7 +30,7 @@
             <li class="nav-item"><a class="nav-link" href="/login"><span ></span><span class="text">Login</span></a> </li>
             <li class="nav-item"><a class="nav-link" href="/register"><span></span><span class="text">Register</span></a> </li> 
           <% } else { %>
-            <li class="nav-item"><a class="nav-link" href="#"><span></span><span class="text">Logged as <%= currentUser.username %></span></a> </li>
+            <li class="nav-item"><a class="nav-link" href="/user/<%= currentUser._id %>"><span></span><span class="text">Logged as <%= currentUser.username %></span></a> </li>
             <li class="nav-item"><a class="nav-link" href="/logout"><span></span><span class="text">Log out</span></a> </li> 
           <% } %>
         </ul>
