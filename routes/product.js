@@ -284,8 +284,8 @@ router.get('/remove/:id', function(req, res){
                 }
                 else{
                     if(foundCart.products.length > 1){
-                        foundProduct.qty = 1;
-                        foundProduct.save();
+                        // foundProduct.qty = 1;
+                        // foundProduct.save();
                         foundCart.products.pull(foundProduct);
                         req.flash('success','Remove successfully!');
                         foundCart.totalprice -= foundProduct.price;
@@ -294,8 +294,8 @@ router.get('/remove/:id', function(req, res){
                         res.redirect('/shopping-cart');
                     }
                     else{
-                        foundProduct.qty = 1;
-                        foundProduct.save();
+                        // foundProduct.qty = 1;
+                        // foundProduct.save();
                         foundCart.remove();
                         foundCart.totalprice -= foundProduct.price;
                         foundCart.totalQty--;

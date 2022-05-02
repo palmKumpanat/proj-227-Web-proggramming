@@ -15,7 +15,7 @@ const   express         =   require("express"),
 
 const   indexRoutes     =   require('./routes/index'),
         productRoutes   =   require('./routes/product'),
-        reviewRoutes   =   require('./routes/reviews');
+        reviewRoutes    =   require('./routes/reviews');
 
 mongoose.connect('mongodb://localhost/PalmShop');
 app.set("view engine", "ejs");
@@ -57,7 +57,8 @@ app.use(function(req, res, next){
 
 app.use('/', indexRoutes);
 app.use('/:id/reviews', reviewRoutes);
-app.use('/', productRoutes)
+app.use('/', productRoutes);
+
 
 
 
