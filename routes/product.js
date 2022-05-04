@@ -1,5 +1,6 @@
 const { redirect } = require('express/lib/response');
 const { off } = require('process');
+const { findByIdAndUpdate } = require('../models/product');
 const product = require('../models/product');
 
 const express   = require('express'),
@@ -24,6 +25,7 @@ const express   = require('express'),
       Products  = require('../models/product'),
       User      = require('../models/user'),
       Cart      = require('../models/cart'),
+      Order     = require('../models/order'),
       middleware = require('../middleware');
     //   Cart      = require('../models/cart'),
 
@@ -68,7 +70,6 @@ router.get('/find-Shoes', function(req, res){
             console.log(err);
         }
         else{
-            console.log(foundProduct);
             res.render('landing.ejs', {products: foundProduct});
         }
     });
@@ -80,7 +81,6 @@ router.get('/find-Clothing', function(req, res){
             console.log(err);
         }
         else{
-            console.log(foundProduct);
             res.render('landing.ejs', {products: foundProduct});
         }
     });
@@ -93,7 +93,6 @@ router.get('/find-sunglasses', function(req, res){
             console.log(err);
         }
         else{
-            console.log(foundProduct);
             res.render('landing.ejs', {products: foundProduct});
         }
     });
@@ -105,7 +104,6 @@ router.get('/find-Hat&Cap', function(req, res){
             console.log(err);
         }
         else{
-            console.log(foundProduct);
             res.render('landing.ejs', {products: foundProduct});
         }
     });
@@ -117,7 +115,6 @@ router.get('/find-Bags', function(req, res){
             console.log(err);
         }
         else{
-            console.log(foundProduct);
             res.render('landing.ejs', {products: foundProduct});
         }
     });
@@ -200,77 +197,39 @@ router.get('/checkout', function(req, res){
     });
 });
 
-// router.get('/shopping-cart/:id/plus-qty', function(req, res){
-//     Products.findById(req.params.id, function(err, foundProduct){
-//         if(err){
-//             console.log(err);
-//         }
-//         else{
-//             Cart.findOne({user: {id:req.user._id}}, function(err, foundCart){
-//                 if(err){
-//                     console.log(err);
-//                 }
-//                 else{
-//                     // foundProduct.qty++;
-//                     // foundProduct.totalPrice = foundProduct.price;
-//                     // foundProduct.totalPrice += foundProduct.price;
-//                     // foundProduct.save();
-//                     res.redirect('/shopping-cart');
-//                 }
-//             })
-//         }
-//     })
-// })
-
-// router.get('/shopping-cart/:id/plus-qty', function(req, res){
-//     req.body.products = {
-//         id: req.params.id,
-//         name: req.params.name,
-//         image : req.params.image,
-//         qty : req.params.qty,
-//         price : req.params.price
-//     }
-//     Products.find(req.body.products, function(err, products){
-//         if(err){
-//             console.log(err);
-//         }
-//         else{
-//             Cart.findOne({user: {id:req.user._id}}, function(err, foundCart){
-//                 if(err){
-//                     console.log(err);
-//                 }
-//                 else{
-//                     foundCart.products.qty++;
-//                     foundCart.save();
-//                     res.redirect('/shopping-cart');
-//                 }
-//             })
-//         }
-//     })
-// })
-
-
-// router.get('/shopping-cart/:id/minus-qty', function(req, res){
-//     Products.findById(req.params.id, function(err, foundProduct){
-//         if(err){
-//             console.log(err);
-//         }
-//         else{
-//             Cart.findOne({user: {id:req.user._id}}, function(err, foundCart){
-//                 if(err){
-//                     console.log(err);
-//                 }
-//                 else{
-//                     // foundCart.products.update({_id:foundProduct},{$set: foundProduct.qty++});
-//                     foundCart.products.qty--;
-//                     foundCart.totalprice -= foundCart.products.price;
-//                     foundCart.save();
-//                     res.redirect('/shopping-cart');
-//                 }
-//             })
-//         }
-//     })
-// })
+router.post('/cart/:id/place-Order', function(req, res){
+    Cart.findById(req.params.id, function(err, foundCart){
+        if(err){
+            console.log(err);
+        }
+        else{
+            const order = {user : {id:req.user._id}};
+            Order.findOne({user : {id: req.user._id}}, function(err, foundOrder){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    Order.create(order, function(err, newOrder){
+                        if(err){
+                                console.log(err);
+                        }
+                        else{
+                            newOrder.date = new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(new Date());
+                            newOrder.user.firstName = req.user.firstName;
+                            newOrder.user.lastName = req.user.lastName;
+                            newOrder.shippingAddress = req.body.shippingAddress;
+                            newOrder.payment = req.body.payment;
+                            newOrder.cart.push(foundCart);
+                            newOrder.save();
+                            req.flash('success', 'successfully, Your order is complete.');
+                            res.redirect('/');
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
 
 router.get('/remove/:id', function(req, res){
     Products.findById(req.params.id, function(err, foundProduct){

@@ -3,12 +3,22 @@
 <div class="container">
     <div class="view-content">
         <h1>DELIVERY ADDRESS</h1>
+        <form action="/cart/<%= cart._id %>/place-Order" method="POST">
         <p>To place order, please add a delivery address</p><hr>
-        <h5>Shipping Address :</h5><br>
-        <h5 class="text-check"><%= cart.user.address %> <%= cart.user.city %> <%= cart.user.postalCode %></h5>
-        <h5>Payment Type :</h5><br>
-        <h5 class="text-check" >Credit cards</h5>
-        <p></p>
+        <div class="mb-3">
+            <label class="form-label">Shipping Address :</label>
+            <input type="text" class="form-control" name="shippingAddress", value="<%= cart.user.address %> <%= cart.user.city %> <%= cart.user.postalCode %>">
+          </div>
+
+        
+        <div class="mb-3">
+            <label class="form-label">Credit Card :</label>
+            <input type="text" class="form-control" name="payment[cardNumber]" placeholder="Card Number"><br>
+            <input type="text" class="form-control" name="payment[expiryDate]" placeholder="Expiry Date (MM/YY)"><br>
+            <input type="text" class="form-control" name="payment[CVV]" placeholder="CVV"><br>
+            <input type="text" class="form-control" name="payment[nameOnCard]" placeholder="Name on Card">
+          </div>
+
     </div><br>
 
     <div class="view-content">
@@ -38,8 +48,11 @@
             <h5>Shipping Total: <%= cart.Shipping %> .-</h5><br>
             <h5>Total Payment: <%= cart.totalPayment %> .-</h5><br>
             <p></p>
-            <a href="#" class="btn btn-secondary" id="btn-checkout">Place Order</a>
-            <a href="/shopping-cart" class="btn btn-info" id="back">Back</a>
+            <!-- <a href="#" class="btn btn-secondary" id="btn-checkout">Place Order</a>
+            <a href="/shopping-cart" class="btn btn-info" id="back">Back</a> -->
+            <button type="submit" class="btn btn-secondary" id="btn-checkout">Place Order</button>
+            <a href="/shopping-cart" class="btn btn-info" id="back" >Back</a>
+        </form>
         </div>
 
     </div>
