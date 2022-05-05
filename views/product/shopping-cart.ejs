@@ -14,10 +14,10 @@
                 <div class="detail-box">
                     <div class="cart-product-title"><%= product.name %></div>
                     <div class="cart-price"> <%= product.price %> .-</div>
-                
+                    <a href="/<%= product._id %>/remove" class="btn btn-dark btn-xs" id="cart-remove">Remove</a>
                 </div>
                 <div class="box-qty">
-                    <!-- <div href="/" class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                     <!-- <div href="/" class="col-md-3 col-lg-3 col-xl-2 d-flex">
                         <button  class="btn btn-link px-2"
                           onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                           <i class="fas fa-minus">-</i>
@@ -30,8 +30,9 @@
                           onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                           <i class="fas fa-plus">+</i>
                         </button>
-                      </div> -->
-                    <button class="button-Qty">
+                      </div>  -->
+
+                    <!-- <button class="button-Qty">
                         <a href="/shopping-cart/<%= product._id %>/minus-qty" class="icon-plus-minus">-</a>
                     </button>   
 
@@ -41,10 +42,9 @@
 
                      <button class="button-Qty">
                         <a href="/shopping-cart/<%= product._id %>/plus-qty" class="icon-plus-minus">+</a>
-                     </button> 
-
+                     </button>  -->
+                     <input class="cart-product-qty" type="number" value="1">
                 </div>
-                <a href="/<%= product._id %>/remove" class="btn btn-dark btn-xs dropdown-toggle" id="cart-remove">Remove</a>
             </div>
             <hr>
         </div>
@@ -57,6 +57,6 @@
         <a href="/shopping-cart/checkout" class="btn btn-secondary" id="btn-checkout">Checkout</a>
         <a href="/" class="btn btn-info" id="back">Back</a>
     </div>
-</div>
+</div> 
 
 <%- include("../partials/footer.ejs") %>
