@@ -1,8 +1,46 @@
 <%- include("../partials/header.ejs") %>
 
-<a href="/" class="bx bx-arrow-back" id="btn-back"></a> 
+<!-- <a href="/" class="bx bx-arrow-back" id="btn-back"></a>  -->
 
-    <div class="container">
+    <div class="container single-product">
+        <div class="row">
+            <div class="col-2">
+                    <img class="product-img-view" src="<%= product.image %>">
+            </div>
+            <div class="col-2" id="block-detail">
+                <h2 class="product-title-view"> <%=product.name%></h2>
+                <p class="price-view">Price : <%=product.price%> .-</p>
+                <h3>PRODUCT DETAILS</h3>
+                <div class="block-details-product">
+                    <span class="details-view"> <%=product.details%></span><br><br>
+                <% if(currentUser && product.author.id.equals(currentUser._id) || (currentUser && currentUser.isAdmin)){ %>
+                <a href="/<%= product._id %>/edit-product" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <form id="delete-form" action="/<%= product._id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                </form>
+                <% } %>
+                <h2 class="review">Reviews:</h2>
+                <a href="/<%= product._id %>/reviews/new" class="btn btn-sm btn-outline-secondary" id="write-review">Write a Review</a>
+                <% product.reviews.forEach(function(review){ %>
+                <p>
+                    <strong> <%= review.author.username %> </strong> -  <%= review.text %> 
+
+                </p>
+                <% if(currentUser && review.author.id.equals(currentUser._id) || (currentUser && currentUser.isAdmin)){ %>
+                    <a href="/<%= product._id %>/reviews/<%= review._id %>/edit-review" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <form id="delete-form" action="/<%= product._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                    </form>
+                    <% } %>
+                <% }) %>
+                
+            </div>
+            <p class="soldBy">Sold by  <%= product.author.username %></้>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="container">
         <div class="view-content">
             <img  class="product-img-view" src="<%= product.image %>">
             <div class="block-all-details">
@@ -35,7 +73,7 @@
             </div>
         </div>
         <p class="soldBy">Sold by  <%= product.author.username %></้>
-    </div>
+    </div> -->
 
 
     
