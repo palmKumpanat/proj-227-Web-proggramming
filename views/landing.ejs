@@ -9,10 +9,12 @@
                 <div class="shop-content">
                     <div class="product-box">  
                         <img class="product-img" src="<%= products.image %>">
-                        <h2 class="product-title"> <%=products.name%></h2>
-                        <span class="price"><%=products.price%> .-</span>
-                        <a href="/add-to-cart/<%= products._id %>" class="btn btn-dark pull-right" role="button" id="btn-add">Add to Shopping cart</a>
+                        <div class="block-product-title">
+                            <h2 class="product-title"> <%=products.name%></h2>
+                        </div>
+                        <span class="price"><%=products.price%> .-</span><br><br>
                         <a href="/<%= products._id %>" class="btn btn-sm btn-outline-secondary" id="btn">View More</a>
+                        <a href="/<%= products._id %>/add-to-cart" class="btn btn-dark pull-right" role="button" id="btn-add">Add to cart</a>
                     </div><br><br>
                 </div>
         

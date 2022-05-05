@@ -44,7 +44,7 @@
                      </button> 
 
                 </div>
-                <a href="/remove/<%= product._id %>" class="btn btn-dark btn-xs dropdown-toggle" id="cart-remove">Remove</a>
+                <a href="/<%= product._id %>/remove" class="btn btn-dark btn-xs dropdown-toggle" id="cart-remove">Remove</a>
             </div>
             <hr>
         </div>
@@ -54,12 +54,9 @@
             <div class="total-price"> <%= cart.totalprice %> .-</div>
         </div>
         <% } %>
-        <a href="/checkout/" class="btn btn-secondary" id="btn-checkout">Checkout</a>
+        <a href="/shopping-cart/checkout" class="btn btn-secondary" id="btn-checkout">Checkout</a>
         <a href="/" class="btn btn-info" id="back">Back</a>
     </div>
 </div>
-
-
-    
 
 <%- include("../partials/footer.ejs") %>

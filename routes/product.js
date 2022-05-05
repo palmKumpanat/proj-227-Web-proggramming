@@ -125,7 +125,7 @@ router.get("/new",middleware.isLoggedIn,function(req, res){ // ส่งไป�
     res.render("product/new.ejs");
 });
 
-router.get('/add-to-cart/:id', middleware.isLoggedIn, function(req, res){
+router.get('/:id/add-to-cart', middleware.isLoggedIn, function(req, res){
     Products.findById(req.params.id, function(err, foundProduct){
         if(err){
             console.log(err);
@@ -180,7 +180,7 @@ router.get("/shopping-cart",middleware.isLoggedIn,function(req, res){
     });
 });
 
-router.get('/checkout', function(req, res){
+router.get('/shopping-cart/checkout', function(req, res){
     Cart.findOne({user : {id : req.user._id}}).populate('products').populate('user').exec(function(err, foundCart){
         if(err){
             console.log(err);
@@ -197,7 +197,7 @@ router.get('/checkout', function(req, res){
     });
 });
 
-router.post('/cart/:id/place-Order', function(req, res){
+router.post('/shopping-cart/:id/place-Order', function(req, res){
     Cart.findById(req.params.id, function(err, foundCart){
         if(err){
             console.log(err);
@@ -231,7 +231,7 @@ router.post('/cart/:id/place-Order', function(req, res){
     });
 });
 
-router.get('/remove/:id', function(req, res){
+router.get('/:id/remove', function(req, res){
     Products.findById(req.params.id, function(err, foundProduct){
         if(err){
             console.log(err);
