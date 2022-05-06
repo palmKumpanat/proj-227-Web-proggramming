@@ -136,7 +136,42 @@ p{
     object-fit: contain;
     margin-right: 10px;
 }
-
+.topbar{
+    background-color: rgb(89, 233, 233);
+    overflow: hidden;
+}
+.sidebar{
+    background-color: rgb(224, 222, 222);
+    color: white;
+    height: 100%;
+}
+.sidebar a {
+    margin-left: 10px;
+    display: block;
+    color: rgb(17, 16, 16);
+    padding-bottom: 10px;
+    font-size: 30px;
+    text-decoration: none;
+}
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.content{
+    background-color: whitesmoke;
+}
+.card-body{
+    background-color: #e9e5e5;
+    border: rgb(243, 242, 242) solid;
+}
+#image-user{
+    border: rgb(202, 198, 198) solid;
+}
+#username{
+    color: black;
+    font-size: 35px;
+}
 @media only screen and (max-width: 800px) {
 
     nav ul{
