@@ -4,8 +4,10 @@ const mongoose = require('mongoose');
 const orderSchema = new mongoose.Schema({
     date: String,
     shippingAddress: String,
-    totalPrice : String,
+    totalPrice : Number,
     status : String,
+    shippingTotal : Number,
+    totalPayment : Number,
     payment: {
         cardNumber : String,
         expiryDate : String,
@@ -21,11 +23,8 @@ const orderSchema = new mongoose.Schema({
         lastName : String
     },
     cart: [{
-        id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Cart'
-        },
-        totalprice : String
     }]  
 
 });

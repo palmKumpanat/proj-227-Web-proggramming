@@ -58,23 +58,25 @@
               <div class="container">
                 <table>
                   <tr>
-                    <th><h6>ORDER_ID</h6></th>
-                    <th><h6>DATE</h6></th>
-                    <th><h6>TOTAL</h6></th>
-                    <th><h6>STATUS</h6></th>
+                    <th class="text-detail-order">ORDER_ID</th>
+                    <th class="text-detail-order">DATE</th>
+                    <th class="text-detail-order">TOTAL</th>
+                    <th class="text-detail-order">STATUS</th>
+                    <th class="text-detail-order" id="order-view">ACTION</th>
                   </tr>
                   <% orders.forEach(function(order){ %>  
                     <div class="container">
                     <tr>
-                      <td class="text-detail-order"><a href="/order/:id/view-more" class="id-order"><%= order.id %></a></td>
+                      <td class="text-detail-order"><a href="/order/<%= order._id %>/view-more" class="id-order"><%= order.id %></a></td>
                       <td class="text-detail-order"><%= order.date %></td>
                       <td class="text-detail-order"><%= order.totalPrice %> .-</td>
                       <td class="text-detail-order" id="text-status"><%= order.status %></td>
+                      <td class="text-detail-order" id="order-view"><a href="/order/<%= order._id %>/view-more" class="btn btn-sm btn-outline-secondary">View More</a></td>
                     </tr>
                   </div>
                   <% }) %> 
                 </table><hr>
-                <h9>( Click on Order ID for more details. )</h9>
+                <h9 id="show-screen-small">( Click on Order ID for more details. )</h9>
               </div>
           <% } %>
       </div>

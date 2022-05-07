@@ -99,4 +99,16 @@ router.get('/user/:id', function(req, res){
     });
 });
 
+router.get('/order/:id/view-more', function(req, res){
+    Order.findById(req.params.id).populate('cart').exec(function(err, foundOrder){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render('order/view.ejs', {order : foundOrder});
+        }
+    });
+});
+
 module.exports = router;
+

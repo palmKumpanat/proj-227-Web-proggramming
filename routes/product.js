@@ -222,6 +222,8 @@ router.post('/shopping-cart/:id/place-Order', function(req, res){
                             newOrder.cart.push(foundCart);
                             newOrder.totalPrice = foundCart.totalprice;
                             newOrder.status = 'Paid';
+                            newOrder.shippingTotal = 24;
+                            newOrder.totalPayment = newOrder.totalPrice + newOrder.shippingTotal;
                             newOrder.save();
                             req.flash('success', 'successfully, Your order is complete.');
                             res.redirect('/');
