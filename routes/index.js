@@ -19,7 +19,8 @@ const express  = require('express'),
           callback(null, true);
       },
       upload = multer({storage: storage, fileFilter: imageFilter}),
-      passport = require('passport');
+      passport = require('passport'),
+      middleware = require('../middleware');
 
 
 router.get('/register', function(req, res){    // สร้าง rout ไปหน้า register
@@ -109,6 +110,32 @@ router.get('/order/:id/view-more', function(req, res){
         }
     });
 });
+
+router.get('/:id/edit-user',middleware.checkUser, function(req, res){
+    User.findById(req.params.id, function(err, foundUser){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render("user/edit.ejs", {user: foundUser});
+        }
+    });
+});
+
+router.put('/user/:id',upload.single('image'), function(req, res){
+    if(req.file){
+        req.body.user.profileImage = '/upload/'+req.file.filename;
+    }
+    User.findByIdAndUpdate(req.params.id, req.body.user, function(err, updatedUser){
+        if(err){
+            console.log(err);
+            res.redirect('/user/');
+        }
+        else{
+            res.redirect('/user/'+req.params.id);
+        }
+    })
+})
 
 module.exports = router;
 
