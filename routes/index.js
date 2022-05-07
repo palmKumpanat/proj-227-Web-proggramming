@@ -1,6 +1,7 @@
 const express  = require('express'),
       router   = express.Router(),
       User     = require('../models/user'),
+      Order    = require('../models/order'),
       multer    = require('multer'),
       path      = require('path'),
       storage   =  multer.diskStorage({
@@ -84,7 +85,16 @@ router.get('/user/:id', function(req, res){
             return res.redirect('/');
         }
         else{
-            res.render('user/show.ejs', {user : foundUser});
+            Order.find().where('user.id').equals(foundUser._id).exec(function(err, foundOrder){
+                if(err){
+                    console.log(err);
+                    req.flash('error', 'There is something wrong!');
+                    return res.redirect('/');
+                }
+                else{
+                    res.render('user/show.ejs', {user : foundUser, orders:foundOrder});
+                }
+            })
         }
     });
 });

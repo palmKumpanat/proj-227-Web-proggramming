@@ -220,6 +220,8 @@ router.post('/shopping-cart/:id/place-Order', function(req, res){
                             newOrder.shippingAddress = req.body.shippingAddress;
                             newOrder.payment = req.body.payment;
                             newOrder.cart.push(foundCart);
+                            newOrder.totalPrice = foundCart.totalprice;
+                            newOrder.status = 'Paid';
                             newOrder.save();
                             req.flash('success', 'successfully, Your order is complete.');
                             res.redirect('/');
@@ -266,7 +268,6 @@ router.get('/:id/remove', function(req, res){
     });
 });
 
-
 router.post("/",middleware.isLoggedIn,upload.single('image'),function(req, res){ // รับข้อมูลจาก form ที่เพิ่มสินค้า มาเเสดงผล สินค้า ( หน้าเเรก )
     req.body.product.image = '/upload/' + req.file.filename;
     req.body.product.author = {
@@ -283,18 +284,6 @@ router.post("/",middleware.isLoggedIn,upload.single('image'),function(req, res){
     });
 });
 
-
-
-router.get("/:id", function(req, res){      // ส่งข้อมูล id ไปเเสดงผลข้อมูล (รายละเอียดของสินค้า)
-    Products.findById(req.params.id).populate('reviews').exec(function(err, foundProduct){
-        if(err){
-            console.log(err);
-        }
-        else{
-            res.render("product/viewMore.ejs", {product : foundProduct});
-        }
-    });
-});
 
 router.get('/:id/edit-product',middleware.checkProductOwner, function(req, res){
     Products.findById(req.params.id, function(err, foundProduct){
@@ -333,6 +322,17 @@ router.delete('/:id', middleware.checkProductOwner,function(req, res){
         }
     })
 })
+
+router.get("/:id", function(req, res){      // ส่งข้อมูล id ไปเเสดงผลข้อมูล (รายละเอียดของสินค้า)
+    Products.findById(req.params.id).populate('reviews').exec(function(err, foundProduct){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render("product/viewMore.ejs", {product : foundProduct});
+        }
+    });
+});
 
 
 module.exports = router;

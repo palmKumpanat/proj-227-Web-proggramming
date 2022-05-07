@@ -1,17 +1,16 @@
 <%- include("../partials/header.ejs") %>
 
   <div class="container">
-    <dic class="main">
+    <div class="main">
       <div class="topbar"></div>
       <div class="row">
         <div class="col-md-4 mt-1">
           <div class="card text-center sidebar">
             <div class="card-body">
-              <img src="<%= user.profileImage %>" class="rounded-circle" id="image-user" width="200">
+              <img src="<%= user.profileImage %>" class="rounded-circle" id="image-user" width="150">
               <div class="mt-3">
                 <h3 id="username"><%= user.username %></h3>
                 <a href="/">Home</a>
-                <a href="">Order</a>
                 <a href="">Edit</a>
                 <a href="/logout">Log out</a>
               </div>
@@ -48,24 +47,48 @@
               </div><hr>
             </div>
           </div>
-          <div class="card mb-3 content">
-            <h1 class="m-3">Order</h1>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-3">
-                  <h5>My Order</h5>
-                </div>
-                <div class="col-md-9 text-secondary">
-                  Order other...
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
+      </div><br>
+
+      <div class="view-content-user">
+          <h2>Orders history</h2><hr>
+          <% if(!orders){ %>
+              <hr><h1 class="no-item">No Order in this time </h1><hr>
+          <% }else { %>
+              <div class="container">
+                <table>
+                  <tr>
+                    <th><h6>ORDER_ID</h6></th>
+                    <th><h6>DATE</h6></th>
+                    <th><h6>TOTAL</h6></th>
+                    <th><h6>STATUS</h6></th>
+                  </tr>
+                  <% orders.forEach(function(order){ %>  
+                    <div class="container">
+                    <tr>
+                      <td class="text-detail-order"><a href="/order/:id/view-more" class="id-order"><%= order.id %></a></td>
+                      <td class="text-detail-order"><%= order.date %></td>
+                      <td class="text-detail-order"><%= order.totalPrice %> .-</td>
+                      <td class="text-detail-order" id="text-status"><%= order.status %></td>
+                    </tr>
+                  </div>
+                  <% }) %> 
+                </table><hr>
+                <h9>( Click on Order ID for more details. )</h9>
+              </div>
+          <% } %>
       </div>
-    </dic>
-  </div>
+  </div> 
+</div><br>
 
 
 <%- include("../partials/footer.ejs") %>
+
+<!-- <h3>Your Orders :</h3>
+<ul>
+  <% orders.forEach(function(order){ %>
+    <li><a href=""><%= order.id %>,<%= order.date %>, <%= order.totalPrice %> , <%= order.status %></a></li>
+  <% }) %>
+</ul>
+</div> -->
 
