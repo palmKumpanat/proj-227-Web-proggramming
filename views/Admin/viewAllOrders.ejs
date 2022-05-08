@@ -1,0 +1,26 @@
+<%- include("../partials/header.ejs") %>
+
+<div class="view-content-user">
+    <div class="container">
+        <h2>All Orders</h2><hr>
+        <table>
+          <tr>
+            <th class="text-detail-order">Order_ID</th>
+            <th class="text-detail-order">DATE</th>
+            <th class="text-detail-order">TOTAL</th>
+            <th class="text-detail-order">STATUS</th>
+            <th class="text-detail-order" id="order-view">ACTION</th>
+          </tr>
+    <% orders.forEach(function(order){ %>
+        <div class="container">
+            <tr>
+              <td class="text-detail-order"><a href="/order/<%= order._id %>/view-more" class="id-order"><%= order.id %></a></td>
+              <td class="text-detail-order"><%= order.date %></td>
+              <td class="text-detail-order"><%= order.totalPrice %> .-</td>
+              <td class="text-detail-order" id="text-status"><%= order.status %></td>
+              <td class="text-detail-order" id="order-view"><a href="/order/<%= order._id %>/view-more" class="btn btn-sm btn-outline-secondary">View More</a></td>
+            </tr>
+          </div>
+    <% }) %>
+</div>
+<%- include("../partials/footer.ejs") %>

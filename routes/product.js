@@ -30,6 +30,7 @@ const express   = require('express'),
     //   Cart      = require('../models/cart'),
 
 
+
 router.get("/", function(req, res){ // ส่งข้อมูลของสินค้าไปเเสดงใน forEach 
     Products.find({}, function(err, allproducts){  // หาข้อมูลที่อยู่ใน database เพื่อส่งไปเเสดงผล
         if(err){
@@ -40,6 +41,8 @@ router.get("/", function(req, res){ // ส่งข้อมูลของส�
         }
     });
 });
+
+
 
 
 router.get('/sort-low-to-high', function(req, res){

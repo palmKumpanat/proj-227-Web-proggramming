@@ -51,10 +51,12 @@
       </div><br>
 
       <div class="view-content-user">
-          <h2>Orders history</h2><hr>
           <% if(!orders){ %>
+            <h2>Orders history</h2><hr>
               <hr><h1 class="no-item">No Order in this time </h1><hr>
+          <% }else if(currentUser && currentUser.isAdmin){ %>
           <% }else { %>
+            <h2>Orders history</h2><hr>
               <div class="container">
                 <table>
                   <tr>

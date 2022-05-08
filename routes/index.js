@@ -2,6 +2,7 @@ const express  = require('express'),
       router   = express.Router(),
       User     = require('../models/user'),
       Order    = require('../models/order'),
+      Products = require('../models/product'),
       multer    = require('multer'),
       path      = require('path'),
       storage   =  multer.diskStorage({
@@ -134,8 +135,30 @@ router.put('/user/:id',upload.single('image'), function(req, res){
         else{
             res.redirect('/user/'+req.params.id);
         }
-    })
-})
+    });
+});
+
+router.get('/admin/view-all-products', function(req, res){
+    Products.find({}, function(err, allproducts){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render('Admin/viewAllProducts.ejs', {products: allproducts});
+        }
+    });
+});
+
+router.get('/admin/view-all-Orders', function(req, res){
+    Order.find({}, function(err, allOrders){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render('Admin/viewAllOrders.ejs', {orders: allOrders});
+        }
+    });
+});
 
 module.exports = router;
 
