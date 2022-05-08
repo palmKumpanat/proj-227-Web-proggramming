@@ -194,7 +194,7 @@ router.get('/shopping-cart/checkout', function(req, res){
             foundCart.user.city = req.user.city;
             foundCart.Shipping = 24;
             foundCart.totalPayment = foundCart.totalprice + foundCart.Shipping;
-            // foundCart.save();
+            foundCart.save();
             res.render('product/checkout.ejs', {cart : foundCart});
         }
     });

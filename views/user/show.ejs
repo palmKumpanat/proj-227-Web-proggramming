@@ -69,11 +69,11 @@
                   <% orders.forEach(function(order){ %>  
                     <div class="container">
                     <tr>
-                      <td class="text-detail-order"><a href="/order/<%= order._id %>/view-more" class="id-order"><%= order.id %></a></td>
+                      <td class="text-detail-order"><a href="/order/<%= order.id %>/view-more" class="id-order"><%= order.id %></a></td>
                       <td class="text-detail-order"><%= order.date %></td>
                       <td class="text-detail-order"><%= order.totalPrice %> .-</td>
                       <td class="text-detail-order" id="text-status"><%= order.status %></td>
-                      <td class="text-detail-order" id="order-view"><a href="/order/<%= order._id %>/view-more" class="btn btn-sm btn-outline-secondary">View More</a></td>
+                      <td class="text-detail-order" id="order-view"><a href="/order/<%= order.id %>/view-more" class="btn btn-sm btn-outline-secondary">View More</a></td>
                     </tr>
                   </div>
                   <% }) %> 

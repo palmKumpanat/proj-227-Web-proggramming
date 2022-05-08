@@ -87,7 +87,7 @@ router.get('/user/:id', function(req, res){
             return res.redirect('/');
         }
         else{
-            Order.find().where('user.id').equals(foundUser._id).exec(function(err, foundOrder){
+            Order.find({}).where('user.id').equals(foundUser._id).exec(function(err, foundOrder){
                 if(err){
                     console.log(err);
                     req.flash('error', 'There is something wrong!');
