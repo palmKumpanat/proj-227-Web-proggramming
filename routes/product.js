@@ -320,9 +320,11 @@ router.delete('/:id', middleware.checkProductOwner,function(req, res){
     Products.findByIdAndRemove(req.params.id, function(err){
         if(err){
             console.log(err);
+            req.flash('error', "There are something wrong!");
             res.redirect('/');
         }
         else{
+            req.flash('success', "Your review was deleted.");
             res.redirect('/');
         }
     })
