@@ -39,7 +39,8 @@ router.post('/register', upload.single('profileImage'), function(req, res){
                             profileImage : req.body.profileImage,
                             address: req.body.address,
                             postalCode: req.body.postalCode,
-                            city: req.body.city
+                            city: req.body.city,
+                            status: req.body.status
     });
     if(req.body.adminCode === 'topsecret'){
         newUser.isAdmin = true;
@@ -94,7 +95,16 @@ router.get('/user/:id', function(req, res){
                     return res.redirect('/');
                 }
                 else{
-                    res.render('user/show.ejs', {user : foundUser, orders:foundOrder});
+                    Products.find({}).where('author.id').equals(foundUser._id).exec(function(err, foundProduct){
+                        if(err){
+                            console.log(err);
+                            req.flash('error', 'There is something wrong!');
+                            return res.redirect('/');
+                        }
+                        else{
+                            res.render('user/show.ejs', {user : foundUser, orders:foundOrder, products:foundProduct});
+                        }
+                    })
                 }
             })
         }

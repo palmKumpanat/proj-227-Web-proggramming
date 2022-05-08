@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
     address : String,
     postalCode : String,
     city : String,
+    status : String,
     isAdmin: {type : Boolean, default: false}
 });
 
