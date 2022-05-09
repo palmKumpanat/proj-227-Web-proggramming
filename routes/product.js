@@ -43,8 +43,6 @@ router.get("/", function(req, res){ // ส่งข้อมูลของส�
 });
 
 
-
-
 router.get('/sort-low-to-high', function(req, res){
     Products.find({}).sort([['price', 1]]).exec(function(err, allproducts){
         if(err){
@@ -340,6 +338,8 @@ router.get("/:id", function(req, res){      // ส่งข้อมูล id �
         }
     });
 });
+
+
 
 
 module.exports = router;
