@@ -49,9 +49,16 @@
             <% } %>
           </ul>
         </nav>
+        <% if(!currentUser) { %>
         <a href="/shopping-cart">
           <i class="bx bxs-shopping-bag-alt" id="cart-icon"></i>
         </a>
+        <% }else if(currentUser.status === 'Buyer'){ %>
+          <a href="/shopping-cart">
+            <i class="bx bxs-shopping-bag-alt" id="cart-icon"></i>
+          </a>
+        <% } %>
+        
         <img src="/images/menu-icon.jpg" class="menu-icon" id="MenuItems" 
         onclick="menutoggle()">
       </div>

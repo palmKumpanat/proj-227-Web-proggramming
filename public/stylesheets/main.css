@@ -215,11 +215,7 @@ table{
 .input-group{
     display: inline-block;
 }
-/* .max-screen{
-    position: absolute;
-    background: #e0e0e0;
-    margin-top: 125px;
-} */
+
 .footer{
     background: #e0e0e0;
     margin-top: 125px;
@@ -267,104 +263,6 @@ ul{
 .copyright{
     text-align: center;
 }
-
-@media only screen and (max-width: 800px) {
-
-    nav ul{
-        position: absolute;
-        top: 70px;
-        left: 0;
-        background: #333;
-        width: 100%;
-        z-index: 100;
-        overflow: hidden;
-        transition: max-height 0.5s;
-    }
-    nav ul li{
-        display: block;
-        margin-right: 50px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .nav-text-link{
-        text-decoration: none;
-        color: rgb(255, 255, 255);
-    }
-    nav ul li a{
-        color: #fff;
-    }
-    .menu-icon{
-        display: block;
-        cursor: pointer;
-    }
-    .col-2{
-        display: grid;
-        grid-template-columns:100% ;
-        flex-basis: 50%;
-        min-width: 350px;
-    }
-    .text-detail-order{
-        font-size: 10px;
-        border-bottom: rgb(207, 207, 207) solid;
-    }
-    #order-view{
-        display: none;
-    }
-    #show-screen-small{
-        visibility: visible;
-    }
-    #hide-when-screen-small{
-        display: none;
-    }
-}
-
-
-
-
-/* #search {
-    outline: none;
-    border: none;
-    display: inline-block
-}
-
-
-
-
-.fa-search {
-    font-size: 10px;
-    padding: 5px;
-    margin-bottom: 3px;
-    padding-right: 10px;
-}
-
-
-
-.search-nav-item {
-    margin-left: 280px;
-    margin-right: 100px;
-    width: 300px
-}
-.fa-user-o{
-    margin-left: 200px
-}
-
-.fa-user-1{
-    margin-left: 10px;
-    font-size: 20px;
-}
-
-#search {
-    margin: 10px;
-}
-  */
-
-.cart-shopping{
-    color: rgb(43, 41, 41);
-    text-decoration: none;
-    font-size: 20px;
-    margin-left: 600px;
-}
-
 .button-Qty{
     background-color: rgb(156, 154, 154);
     width: 1.8rem;
@@ -374,17 +272,9 @@ ul{
     border: none;
 }
 
-
-
-
 #form1{
     width: 50px;
 }
-
-
-
-
-
 
 #cart-icon{
     font-size: 35px;
@@ -571,3 +461,58 @@ ul{
 #write-review{
     margin-bottom: 20px;
 }
+
+
+@media only screen and (max-width: 800px) {
+
+    nav ul{
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: #333;
+        width: 100%;
+        z-index: 100;
+        overflow: hidden;
+        transition: max-height 0.5s;
+    }
+    nav ul li{
+        display: block;
+        margin-right: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .nav-text-link{
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+    }
+    nav ul li a{
+        color: #fff;
+    }
+    .menu-icon{
+        display: block;
+        cursor: pointer;
+    }
+    .col-2{
+        display: grid;
+        grid-template-columns:100% ;
+        flex-basis: 50%;
+        min-width: 350px;
+    }
+    .text-detail-order{
+        font-size: 10px;
+        border-bottom: rgb(207, 207, 207) solid;
+    }
+    #order-view{
+        display: none;
+    }
+    #show-screen-small{
+        visibility: visible;
+    }
+    #hide-when-screen-small{
+        display: none;
+    }
+}
+
+
+
+
