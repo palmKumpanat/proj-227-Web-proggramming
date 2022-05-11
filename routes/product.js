@@ -1,3 +1,4 @@
+const e = require('connect-flash');
 const { redirect } = require('express/lib/response');
 const { off } = require('process');
 const { findByIdAndUpdate } = require('../models/product');
@@ -181,6 +182,20 @@ router.get("/shopping-cart",middleware.isLoggedIn,function(req, res){
     });
 });
 
+// router.get("/shopping-cart/:id/plus-qty", function(req, res){
+//     Products.findById(req.params.id ,function(err, foundProduct){
+//         if(err){
+//             console.log(err);
+//         }
+//         else{
+//             foundProduct.qty++;
+//             foundProduct.save();
+//             res.redirect('/shopping-cart');
+//         }
+//     });
+// });
+
+
 router.get('/shopping-cart/checkout', function(req, res){
     Cart.findOne({user : {id : req.user._id}}).populate('products').populate('user').exec(function(err, foundCart){
         if(err){
@@ -197,6 +212,7 @@ router.get('/shopping-cart/checkout', function(req, res){
         }
     });
 });
+
 
 router.post('/shopping-cart/:id/place-Order', function(req, res){
     Cart.findById(req.params.id, function(err, foundCart){
@@ -248,8 +264,8 @@ router.get('/:id/remove', function(req, res){
                 }
                 else{
                     if(foundCart.products.length > 1){
-                        // foundProduct.qty = 1;
-                        // foundProduct.save();
+                        foundProduct.qty = 1;
+                        foundProduct.save();
                         foundCart.products.pull(foundProduct);
                         req.flash('success','Remove successfully!');
                         foundCart.totalprice -= foundProduct.price;
@@ -258,8 +274,8 @@ router.get('/:id/remove', function(req, res){
                         res.redirect('/shopping-cart');
                     }
                     else{
-                        // foundProduct.qty = 1;
-                        // foundProduct.save();
+                        foundProduct.qty = 1;
+                        foundProduct.save();
                         foundCart.remove();
                         foundCart.totalprice -= foundProduct.price;
                         foundCart.totalQty--;

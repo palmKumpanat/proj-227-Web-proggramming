@@ -245,6 +245,7 @@ table{
     flex-basis: 12%;
     text-align: center;
 }
+
 ul{
     list-style-type: none;
 }
@@ -510,6 +511,12 @@ ul{
     }
     #hide-when-screen-small{
         display: none;
+    }
+    #img-footer1{
+        margin-left: 40px;
+    }
+    #img-footer2{
+        margin-left: 40px;
     }
 }
 

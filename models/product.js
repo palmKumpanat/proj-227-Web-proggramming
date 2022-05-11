@@ -6,6 +6,7 @@ const productSchema = new mongoose.Schema({
     qty : Number,
     image : String,
     categories : String,
+    // totalPrice : Number,
     details : String,
     author:{
         id:{
@@ -19,7 +20,7 @@ const productSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Review'
         }
-    ]
+    ],
 });
 
 module.exports = mongoose.model('Products', productSchema);

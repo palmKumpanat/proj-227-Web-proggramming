@@ -25,6 +25,7 @@ const cartSchema = new mongoose.Schema({
         image : String,
         qty : Number,
         price : Number,
+        totalPrice : Number
     }]  
 });
 
