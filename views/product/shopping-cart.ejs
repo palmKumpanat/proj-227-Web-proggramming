@@ -30,9 +30,8 @@
                           onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                           <i class="fas fa-plus">+</i>
                         </button>
-                      </div>  -->
-<!-- 
-                    <button class="button-Qty">
+                      </div>   -->
+                    <!-- <button class="button-Qty">
                         <a href="/shopping-cart/<%= product._id %>/minus-qty" class="icon-plus-minus">-</a>
                     </button>   
 
@@ -42,12 +41,13 @@
 
                      <button class="button-Qty">
                         <a href="/shopping-cart/<%= product._id %>/plus-qty" class="icon-plus-minus">+</a>
-                     </button> 
-                </div> -->
-                <form>
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" min="1" max="5" value="<%= product.qty %>">
-                  </form>
+                     </button>  -->
+                </div> 
+                     <!-- <form action="/shopping-cart/<%= cart._id %>/updateQty/<%= product._id %>">
+                        <label for="qty">Quantity:</label>
+                            <input type="number" id="qty" name="qty" min="1" max="10" value="<%= product.qty %>">
+                            <input class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">
+                      </form>  -->
             </div>
             <hr>
         </div>

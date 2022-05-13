@@ -122,6 +122,23 @@ router.get('/find-Bags', function(req, res){
     });
 });
 
+router.post('/search', function(req, res){
+    let keyword = req.body.keyword;
+    res.redirect("/search/"+keyword);
+});
+
+router.get('/search/:keyword', function(req, res){
+    let keyword = req.params.keyword;
+    Products.find({name :{$regex : keyword, $options :"i"}}).exec(function(err, foundProduct){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render('landing.ejs', {products: foundProduct});
+        }
+    });
+});
+
 
 router.get("/new",middleware.isLoggedIn,function(req, res){ // ส่งไปหน้าเพิ่มสินค้า ( Add Product )
     res.render("product/new.ejs");
@@ -151,6 +168,7 @@ router.get('/:id/add-to-cart', middleware.isLoggedIn, function(req, res){
                                 newCart.totalprice += foundProduct.price * foundProduct.qty;
                                 newCart.totalQty = 0;
                                 newCart.totalQty ++;
+                                newCart.qtyInCart = 1;
                                 newCart.save();
                                 req.flash('success', 'Add to shopping cart successfully!');
                                 res.redirect('/'); 
@@ -161,6 +179,7 @@ router.get('/:id/add-to-cart', middleware.isLoggedIn, function(req, res){
                         foundCart.products.push(foundProduct);
                         foundCart.totalprice += foundProduct.price * foundProduct.qty;
                         foundCart.totalQty++;
+                        foundCart.qtyInCart = 1;
                         foundCart.save();
                         req.flash('success', 'Add to shopping cart successfully!');
                         res.redirect('/'); 
@@ -182,18 +201,29 @@ router.get("/shopping-cart",middleware.isLoggedIn,function(req, res){
     });
 });
 
-// router.get("/shopping-cart/:id/plus-qty", function(req, res){
-//     Products.findById(req.params.id ,function(err, foundProduct){
+// router.get('/shopping-cart/:cart_id/updateQty/:product_id', function(req, res){
+//     Products.findById(req.params.product_id ,function(err, foundProduct){
 //         if(err){
 //             console.log(err);
 //         }
 //         else{
-//             foundProduct.qty++;
-//             foundProduct.save();
-//             res.redirect('/shopping-cart');
+//             Cart.findById(req.params.cart_id ,function(err, foundCart){
+//                 if(err){
+//                     console.log(err);
+//                 }
+//                 else{
+//                     Cart.updateOne(
+//                         {_id: req.params.cart_id , 'products._id': req.params.product_id},
+//                         {$inc: {"products.$.qty": req.body.qty}} // Pass your increase value here
+//                     )
+//                     foundCart.save();
+//                     res.redirect('/shopping-cart');
+//                 }
+//             })
 //         }
-//     });
-// });
+//     })
+    
+// })
 
 
 router.get('/shopping-cart/checkout', function(req, res){
@@ -202,6 +232,8 @@ router.get('/shopping-cart/checkout', function(req, res){
             console.log(err);
         }
         else{
+            foundCart.user.firstName = req.user.firstName;
+            foundCart.user.lastName = req.user.lastName;
             foundCart.user.address = req.user.address;
             foundCart.user.postalCode = req.user.postalCode;
             foundCart.user.city = req.user.city;

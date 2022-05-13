@@ -297,7 +297,7 @@ ul{
 
 .shop-content {
     position: relative;
-    top: 5rem;
+    top: 2rem;
 }
 
 .product-box{
@@ -463,6 +463,18 @@ ul{
     margin-bottom: 20px;
 }
 
+#selete{
+    margin-right: 10px;
+}
+
+#searchbar{
+    /* visibility: hidden; */
+}
+/* #nav-search-bar{
+    display: inline-block;
+    width: 350px;
+    margin-left: 300px;
+} */
 
 @media only screen and (max-width: 800px) {
 
@@ -517,6 +529,12 @@ ul{
     }
     #img-footer2{
         margin-left: 40px;
+    }
+    #searchbar{
+        visibility: visible;
+    }
+    #nav-search-bar{
+        display: none;
     }
 }
 

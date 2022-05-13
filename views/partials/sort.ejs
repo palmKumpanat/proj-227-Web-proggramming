@@ -1,7 +1,7 @@
 
 <div class="block-select">
   <div class="container">
-  <select class="selete" name="forma" onchange="location = this.value;">
+  <select id="selete" name="forma" onchange="location = this.value;">
       <option value="#">Categories</option>
       <option value="/">All</option>
       <option value="/find-Shoes">Shoes</option>
@@ -11,13 +11,24 @@
       <option value="/find-Bags"> Bags</option>
      </select>
 
-  <select name="forma" onchange="location = this.value;">
+  <select id="selete" name="forma" onchange="location = this.value;">
     <option value="#">Sort By</option>
     <option value="/">Popularity</option>
     <option value="/sort-low-to-high">Price : Low to High</option>
     <option value="/sort-high-to-low">  Price : High to Low</option>
-   </select>
+   </select><br><br>
 
+   <!-- <form id="nav-search-bar" class="d-flex">
+    <input class="form-control me-2" type="search" placeholder="Search for item" aria-label="Search">
+    <button class="btn btn-outline-primary" type="submit">Search</button>
+  </form> -->
+
+   <form id="searchbar" class="d-flex" action="/search" method="POST">
+    <input class="form-control me-2" type="search" name="keyword" placeholder="Search for item" aria-label="Search">
+    <button class="btn btn-outline-primary" type="submit">Search</button>
+  </form>
+  </div>
+</div>
 
 
 
