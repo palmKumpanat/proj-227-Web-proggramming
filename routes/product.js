@@ -239,7 +239,7 @@ router.get('/shopping-cart/checkout', function(req, res){
 
 
 router.post('/shopping-cart/:id/place-Order', function(req, res){
-    Cart.findById(req.params.id, function(err, foundCart){
+    Cart.findById(req.params.id).populate('items').populate('user').exec(function(err, foundCart){
         if(err){
             console.log(err);
         }
@@ -261,6 +261,12 @@ router.post('/shopping-cart/:id/place-Order', function(req, res){
                             newOrder.shippingAddress = req.body.shippingAddress;
                             newOrder.payment = req.body.payment;
                             newOrder.cart.push(foundCart);
+                            newOrder.cart.items = {
+                                name : req.body,
+                                image : req.body,
+                                unitPrice : req.body,
+                                quantity : req.body
+                            }
                             newOrder.totalPrice = foundCart.totalprice;
                             newOrder.status = 'Paid';
                             newOrder.shippingTotal = 24;
