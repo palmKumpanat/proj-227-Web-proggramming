@@ -23,8 +23,21 @@ const orderSchema = new mongoose.Schema({
         lastName : String
     },
     cart: [{
+        id : {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Cart'
+        },
+        items: [{
+            id:{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Items'
+            },
+            name : String,
+            unitPrice : Number,
+            image : String,
+            quantity : Number
+        }]
+
     }]  
 
 });
