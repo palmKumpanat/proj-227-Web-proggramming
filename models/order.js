@@ -27,6 +27,7 @@ const orderSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Cart'
         },
+        totalQty : Number,
         items: [{
             id:{
                 type: mongoose.Schema.Types.ObjectId,
@@ -35,7 +36,8 @@ const orderSchema = new mongoose.Schema({
             name : String,
             unitPrice : Number,
             image : String,
-            quantity : Number
+            quantity : Number,
+            totalPrice : Number
         }]
 
     }]  
