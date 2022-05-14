@@ -466,7 +466,9 @@ ul{
 #selete{
     margin-right: 10px;
 }
-
+.icon-plus-minus{
+    color: white;
+}
 #searchbar{
     /* visibility: hidden; */
 }

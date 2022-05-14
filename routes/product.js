@@ -27,6 +27,7 @@ const express   = require('express'),
       User      = require('../models/user'),
       Cart      = require('../models/cart'),
       Order     = require('../models/order'),
+      Item      = require('../models/item'),
       middleware = require('../middleware');
     //   Cart      = require('../models/cart'),
 
@@ -150,48 +151,61 @@ router.get('/:id/add-to-cart', middleware.isLoggedIn, function(req, res){
             console.log(err);
             return res.redirect('/');
         }
-        else{
-            const cart = {user : {id:req.user._id}};
-            Cart.findOne({user: {id:req.user._id}} ,function(err, foundCart){
+        else{         
+            const item = {product : req.params.id};
+            Item.create(item, function(err, newItem){
                 if(err){
                     console.log(err);
                 }
                 else{
-                    if(!foundCart){
-                        Cart.create(cart, function(err, newCart){
-                            if(err){
-                                console.log(err);
+                    newItem.name = foundProduct.name;
+                    newItem.quantity = 1;
+                    newItem.image = foundProduct.image;
+                    newItem.unitPrice = foundProduct.price;
+                    newItem.totalPrice = foundProduct.price;
+                    // newItem.totalPrice = newItem.totalPrice + (newItem.unitPrice * newItem.quantity) ;
+                    newItem.save();
+                    const cart = {user : {id:req.user._id}};
+                    Cart.findOne({user: {id:req.user._id}} ,function(err, foundCart){
+                        if(err){
+                            console.log(err);
+                        }
+                        else{
+                            if(!foundCart){
+                                Cart.create(cart, function(err, newCart){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                    else{
+                                        newCart.items.push(newItem);
+                                        newCart.totalprice = 0;
+                                        newCart.totalprice += newItem.totalPrice;
+                                        newCart.totalQty = 0;
+                                        newCart.totalQty ++;
+                                        newCart.save();
+                                        req.flash('success', 'Add to shopping cart successfully!');
+                                        res.redirect('/'); 
+                                    }
+                                })
                             }
                             else{
-                                newCart.products.push(foundProduct);
-                                newCart.totalprice = 0;
-                                newCart.totalprice += foundProduct.price * foundProduct.qty;
-                                newCart.totalQty = 0;
-                                newCart.totalQty ++;
-                                newCart.qtyInCart = 1;
-                                newCart.save();
+                                foundCart.items.push(newItem);
+                                foundCart.totalprice += newItem.totalPrice;
+                                foundCart.totalQty++;
+                                foundCart.save();
                                 req.flash('success', 'Add to shopping cart successfully!');
                                 res.redirect('/'); 
                             }
-                        })
-                    }
-                    else{
-                        foundCart.products.push(foundProduct);
-                        foundCart.totalprice += foundProduct.price * foundProduct.qty;
-                        foundCart.totalQty++;
-                        foundCart.qtyInCart = 1;
-                        foundCart.save();
-                        req.flash('success', 'Add to shopping cart successfully!');
-                        res.redirect('/'); 
-                    }
+                        }
+                    });
                 }
             });
-        }
-    });
+          }
+     });
 });
 
 router.get("/shopping-cart",middleware.isLoggedIn,function(req, res){
-    Cart.findOne({user : {id : req.user._id}}).populate('products').populate('user').exec(function(err, foundCart){
+    Cart.findOne({user : {id : req.user._id}}).populate('user').populate('items').exec(function(err, foundCart){
         if(err){
             console.log(err);
         }
@@ -201,33 +215,11 @@ router.get("/shopping-cart",middleware.isLoggedIn,function(req, res){
     });
 });
 
-// router.get('/shopping-cart/:cart_id/updateQty/:product_id', function(req, res){
-//     Products.findById(req.params.product_id ,function(err, foundProduct){
-//         if(err){
-//             console.log(err);
-//         }
-//         else{
-//             Cart.findById(req.params.cart_id ,function(err, foundCart){
-//                 if(err){
-//                     console.log(err);
-//                 }
-//                 else{
-//                     Cart.updateOne(
-//                         {_id: req.params.cart_id , 'products._id': req.params.product_id},
-//                         {$inc: {"products.$.qty": req.body.qty}} // Pass your increase value here
-//                     )
-//                     foundCart.save();
-//                     res.redirect('/shopping-cart');
-//                 }
-//             })
-//         }
-//     })
-    
-// })
+
 
 
 router.get('/shopping-cart/checkout', function(req, res){
-    Cart.findOne({user : {id : req.user._id}}).populate('products').populate('user').exec(function(err, foundCart){
+    Cart.findOne({user : {id : req.user._id}}).populate('items').populate('user').exec(function(err, foundCart){
         if(err){
             console.log(err);
         }
@@ -284,8 +276,8 @@ router.post('/shopping-cart/:id/place-Order', function(req, res){
     });
 });
 
-router.get('/:id/remove', function(req, res){
-    Products.findById(req.params.id, function(err, foundProduct){
+router.get('/shopping-cart/:id/plus-qty', function(req, res){
+    Item.findById(req.params.id, function(err, foundItem){
         if(err){
             console.log(err);
         }
@@ -295,21 +287,69 @@ router.get('/:id/remove', function(req, res){
                     console.log(err);
                 }
                 else{
-                    if(foundCart.products.length > 1){
-                        foundProduct.qty = 1;
-                        foundProduct.save();
-                        foundCart.products.pull(foundProduct);
+                    foundItem.quantity ++;
+                    foundItem.totalPrice += foundItem.unitPrice;
+                    foundCart.totalprice += foundItem.unitPrice;
+                    foundCart.totalQty++;
+                    foundItem.save();
+                    foundCart.save();
+                    res.redirect('/shopping-cart');
+                }
+            });
+        }
+    });
+});
+
+router.get('/shopping-cart/:id/minus-qty', function(req, res){
+    Item.findById(req.params.id, function(err, foundItem){
+        if(err){
+            console.log(err);
+        }
+        else{
+            Cart.findOne({user: {id:req.user._id}}, function(err, foundCart){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    foundItem.quantity --;
+                    foundItem.totalPrice -= foundItem.unitPrice;
+                    foundCart.totalprice -= foundItem.unitPrice;
+                    foundCart.totalQty--;
+                    foundItem.save();
+                    foundCart.save();
+                    res.redirect('/shopping-cart');
+                }
+            });
+        }
+    });
+});
+
+router.get('/:id/remove', function(req, res){
+    Item.findById(req.params.id, function(err, foundItem){
+        if(err){
+            console.log(err);
+        }
+        else{
+            Cart.findOne({user: {id:req.user._id}}, function(err, foundCart){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    if(foundCart.items.length > 1){
+                        foundItem.quantity = 1;
+                        foundItem.save();
+                        foundCart.items.pull(foundItem);
                         req.flash('success','Remove successfully!');
-                        foundCart.totalprice -= foundProduct.price;
+                        foundCart.totalprice -= foundItem.unitPrice;
                         foundCart.totalQty--;
                         foundCart.save();
                         res.redirect('/shopping-cart');
                     }
                     else{
-                        foundProduct.qty = 1;
-                        foundProduct.save();
+                        foundItem.quantity = 1;
+                        foundItem.save();
                         foundCart.remove();
-                        foundCart.totalprice -= foundProduct.price;
+                        foundCart.totalprice -= foundItem.unitPrice;
                         foundCart.totalQty--;
                         res.redirect('/shopping-cart');
                     }

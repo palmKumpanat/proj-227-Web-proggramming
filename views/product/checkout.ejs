@@ -31,15 +31,15 @@
 
     <div class="view-content">
         <h1>Order Item</h1><hr>
-        <% cart.products.forEach(function(product){ %>  
+        <% cart.items.forEach(function(product){ %>  
             <div class="cart-content">
                 <div class="cart-box">
                     <img src="<%= product.image %>" class="cart-img">
                     <div class="detail-box">
                         <div class="cart-product-title"><%= product.name %></div>
-                        <div class="cart-price"> <%= product.price %> .-</div>
+                        <div class="cart-price"> <%= product.unitPrice %> .-</div>
                         <button class="button-Qty">
-                            <span class="badge"><%= product.qty %></span>
+                            <span class="badge"><%= product.quantity %></span>
                          </button>
                     </div>
                 </div>

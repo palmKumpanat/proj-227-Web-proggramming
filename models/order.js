@@ -8,10 +8,6 @@ const orderSchema = new mongoose.Schema({
     status : String,
     shippingTotal : Number,
     totalPayment : Number,
-    // Owner:{
-    //   firstName : String,
-    //   lastName : String,
-    // },
     payment: {
         cardNumber : String,
         expiryDate : String,

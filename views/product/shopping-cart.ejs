@@ -7,49 +7,30 @@
             <hr><h1 class="no-item">No product in Cart</h1><hr>
         <% }else { %>
             <p>You Have <%= cart.totalQty %> items in Shopping Cart</p><hr>
-        <% cart.products.forEach(function(product){ %>  
+        <% cart.items.forEach(function(product){ %>  
         <div class="cart-content">
             <div class="cart-box">
                 <img src="<%= product.image %>" class="cart-img">
                 <div class="detail-box">
                     <div class="cart-product-title"><%= product.name %></div>
-                    <div class="cart-price"> <%= product.price %> .-</div>
+                    <div class="cart-price"> <%= product.unitPrice %> .-</div>
                     <a href="/<%= product._id %>/remove" class="btn btn-dark btn-xs" id="cart-remove">Remove</a>
                 </div>
                 <div class="box-qty">
-                     <!-- <div href="/" class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button  class="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                          <i class="fas fa-minus">-</i>
-                        </button>
-  
-                        <input id="form1" min="1" name="qty" value="<%= product.qty %>" type="number"
-                          class="form-control form-control-sm" />
-  
-                        <button class="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                          <i class="fas fa-plus">+</i>
-                        </button>
-                      </div>   -->
-                    <!-- <button class="button-Qty">
-                        <a href="/shopping-cart/<%= product._id %>/minus-qty" class="icon-plus-minus">-</a>
-                    </button>   
 
-                    <button class="button-Qty">
-                        <span class="badge"><%= product.qty %></span>
+                      <button class="button-Qty">
+                        <a href="/shopping-cart/<%= product._id %>/minus-qty" class="icon-plus-minus">-</a>
+                    </button> 
+
+                      <button class="button-Qty">
+                        <span class="badge"><%= product.quantity %></span>
                      </button>
 
                      <button class="button-Qty">
                         <a href="/shopping-cart/<%= product._id %>/plus-qty" class="icon-plus-minus">+</a>
-                     </button>  -->
-                </div> 
-                     <!-- <form action="/shopping-cart/<%= cart._id %>/updateQty/<%= product._id %>">
-                        <label for="qty">Quantity:</label>
-                            <input type="number" id="qty" name="qty" min="1" max="10" value="<%= product.qty %>">
-                            <input class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">
-                      </form>  -->
+                     </button>  
             </div>
-            <hr>
+
         </div>
         <% }) %> 
         <div class="total">
