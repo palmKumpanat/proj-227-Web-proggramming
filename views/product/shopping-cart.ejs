@@ -14,11 +14,22 @@
                 <div class="detail-box">
                     <div class="cart-product-title"><%= product.name %></div>
                     <div class="cart-price"> <%= product.unitPrice %> .-</div>
+                    <div class="box-qty-small-screnn">
+                        <button>
+                            <a href="/shopping-cart/<%= product._id %>/minus-qty" class="icon-plus-minus">-</a>
+                        </button>  
+    
+                            <input type="text" name="quantity" value="<%= product.quantity %>" min="1" max="10" size="1" id="number" />
+    
+                        <button>
+                            <a href="/shopping-cart/<%= product._id %>/plus-qty" class="icon-plus-minus">+</a>
+                        </button> 
+                    </div>
                     <a href="/<%= product._id %>/remove" class="btn btn-dark btn-xs" id="cart-remove">Remove</a>
                 </div>
-                <div class="box-qty">
+                <div class="box-qty-full-screen">
 
-                      <button class="button-Qty">
+                      <!-- <button class="button-Qty">
                         <a href="/shopping-cart/<%= product._id %>/minus-qty" class="icon-plus-minus">-</a>
                     </button> 
 
@@ -29,6 +40,17 @@
                      <button class="button-Qty">
                         <a href="/shopping-cart/<%= product._id %>/plus-qty" class="icon-plus-minus">+</a>
                      </button>  
+                     <div class="container"> -->
+                        
+                     <button>
+                        <a href="/shopping-cart/<%= product._id %>/minus-qty" class="icon-plus-minus">-</a>
+                    </button>  
+
+                        <input type="text" name="quantity" value="<%= product.quantity %>" min="1" max="10" size="1" id="number" />
+
+                    <button>
+                        <a href="/shopping-cart/<%= product._id %>/plus-qty" class="icon-plus-minus">+</a>
+                    </button> 
             </div>
             <div><%= product.totalPrice %>.-</div>
         </div>

@@ -46,7 +46,7 @@
                 <h1>Order Summary</h1><hr>
                 <h5>Date : <%= order.date %></h5><br>
                 <% order.cart.forEach(function(cart){ %>
-                    <h5>Subtotal (<%= cart.totalQty %> Item) : <%= cart.totalprice %> .-</h5><br>
+                    <h5>Subtotal (<%= cart.totalQty %> Item) : <%= order.totalPrice %> .-</h5><br>
                     <h5>Shipping Total: <%= order.shippingTotal %> .-</h5><br>
                     <h5>Total Payment: <%= order.totalPayment %> .-</h5><br>
                     <h5>Status : <p id="text-status-view"><%= order.status %></p> </h5>                    
