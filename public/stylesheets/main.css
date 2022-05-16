@@ -475,13 +475,17 @@ ul{
     display: none;
     font-size: 1px;
 }
-/* #nav-search-bar{
+.nav-search-bar{
     display: inline-block;
     width: 350px;
     margin-left: 300px;
-} */
+}
+.searchbar{
+    display: none;
+}
 
-@media only screen and (max-width: 800px) {
+
+@media only screen and (max-width: 1024px) {
 
     nav ul{
         position: absolute;
@@ -535,10 +539,10 @@ ul{
     #img-footer2{
         margin-left: 40px;
     }
-    #searchbar{
-        visibility: visible;
+    .searchbar{
+        display: inline;
     }
-    #nav-search-bar{
+    .nav-search-bar{
         display: none;
     }
     .cart-box{
