@@ -416,7 +416,7 @@ router.delete('/:id', middleware.checkProductOwner,function(req, res){
     })
 })
 
-router.get("/:id", function(req, res){      // ส่งข้อมูล id ไปเเสดงผลข้อมูล (รายละเอียดของสินค้า)
+router.get("/:id/view", function(req, res){      // ส่งข้อมูล id ไปเเสดงผลข้อมูล (รายละเอียดของสินค้า)
     Products.findById(req.params.id).populate('reviews').exec(function(err, foundProduct){
         if(err){
             console.log(err);
