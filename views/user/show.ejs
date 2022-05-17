@@ -55,6 +55,7 @@
             <h2>Orders history</h2><hr>
               <hr><h1 class="no-item">No Order in this time </h1><hr>
           <% }else if(currentUser && currentUser.isAdmin){ %>
+            
           <% }else if(currentUser && currentUser.status === 'Seller'){ %>
             <div class="container">
               <h2>Your Products</h2><hr>
@@ -73,7 +74,7 @@
                         <td class="text-detail-order" id="hide-when-screen-small"><%= product.name %></td>
                         <td class="text-detail-order"><%= product.price %> .-</td>
                         <td class="text-detail-order" id="text-status"><%= product.categories %></td>
-                        <td class="text-detail-order" id="order-view"><a href="/<%= product._id %>" class="btn btn-sm btn-outline-secondary" id="btn">View More</a></td>
+                        <td class="text-detail-order" id="order-view"><a href="/view/<%= product._id %>" class="btn btn-sm btn-outline-secondary" id="btn">View More</a></td>
                       </tr>
                     </div>
               <% }) %>
