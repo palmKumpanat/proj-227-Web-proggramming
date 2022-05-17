@@ -32,7 +32,7 @@ router.post("/",  middleware.isLoggedIn ,function(req, res){ // รับข้�
                     review.save();
                     foundProduct.reviews.push(review);
                     foundProduct.save();
-                    res.redirect("/"+foundProduct._id);
+                    res.redirect("/view/"+foundProduct._id);
                 }
             });
         }
@@ -58,7 +58,7 @@ router.put('/:review_id', middleware.checkReviewOwner, function(req, res){
             res.redirect('back');
         }
         else{
-            res.redirect('/'+req.params.id);
+            res.redirect('/view/'+req.params.id);
         }
     });
 });
@@ -67,11 +67,11 @@ router.delete('/:review_id',middleware.checkReviewOwner, function(req, res){
     Review.findByIdAndRemove(req.params.review_id , function(err){
         if(err){
             req.flash('error', "There are something wrong!");
-            res.redirect('/'+req.params.id);
+            res.redirect('/view/'+req.params.id);
         }
         else{
             req.flash('success', "Your review was deleted.");
-            res.redirect('/'+req.params.id);
+            res.redirect('/view/'+req.params.id);
         }
     });
 });
