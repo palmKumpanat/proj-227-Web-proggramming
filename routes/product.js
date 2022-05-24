@@ -393,7 +393,7 @@ router.put('/:id',upload.single('image'), function(req, res){
             res.redirect('/');
         }
         else{
-            res.redirect('/'+req.params.id);
+            res.redirect('/view/'+req.params.id);
         }
     })
 })
