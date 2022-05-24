@@ -336,8 +336,6 @@ router.get('/:id/remove', function(req, res){
                 }
                 else{
                     if(foundCart.items.length > 1){
-                        foundItem.quantity = 1;
-                        foundItem.save();
                         foundCart.items.pull(foundItem);
                         req.flash('success','Remove successfully!');
                         foundCart.totalprice -= foundItem.unitPrice;
@@ -346,8 +344,6 @@ router.get('/:id/remove', function(req, res){
                         res.redirect('/shopping-cart');
                     }
                     else{
-                        foundItem.quantity = 1;
-                        foundItem.save();
                         foundCart.remove();
                         foundCart.totalprice -= foundItem.unitPrice;
                         foundCart.totalQty--;

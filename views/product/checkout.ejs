@@ -18,14 +18,19 @@
             <input type="text" class="form-control" name="shippingAddress", value="<%= cart.user.address %> <%= cart.user.city %> <%= cart.user.postalCode %>">
           </div>
 
-        
-        <div class="mb-3">
-            <label class="form-label">Credit Card :</label>
-            <input type="text" class="form-control" name="payment[cardNumber]" placeholder="Card Number"><br>
-            <input type="text" class="form-control" name="payment[expiryDate]" placeholder="Expiry Date (MM/YY)"><br>
-            <input type="text" class="form-control" name="payment[CVV]" placeholder="CVV"><br>
-            <input type="text" class="form-control" name="payment[nameOnCard]" placeholder="Name on Card">
-          </div>
+          <p>Payment Method :</p>
+
+          <label for="myCheck">Credit Card:</label> 
+          <input type="checkbox" id="myCheck" onclick="myFunction()">
+          
+            <div class="mb-3" id="text" style="display:none">
+                <label class="form-label"></label>
+                <img class="img-creditCard" src="/images/image-creditCard.jpg" width="150px">
+                <input type="text" class="form-control" name="payment[cardNumber]" placeholder="Card Number"><br>
+                <input type="text" class="form-control" name="payment[expiryDate]" placeholder="Expiry Date (MM/YY)"><br>
+                <input type="text" class="form-control" name="payment[CVV]" placeholder="CVV"><br>
+                <input type="text" class="form-control" name="payment[nameOnCard]" placeholder="Name on Card">
+              </div>
 
     </div><br>
 
@@ -67,6 +72,17 @@
     </div>
 </div>
 
+<script>
+    function myFunction() {
+      var checkBox = document.getElementById("myCheck");
+      var text = document.getElementById("text");
+      if (checkBox.checked == true){
+        text.style.display = "block";
+      } else {
+         text.style.display = "none";
+      }
+    }
+    </script>
 
     
 

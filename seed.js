@@ -130,7 +130,7 @@ const mongoose  = require('mongoose'),
 //   ];
 
 function seedDB(){
-        Order.remove({}, function(err){
+        Item.remove({}, function(err){
         if(err){
             console.log(err);
         }
