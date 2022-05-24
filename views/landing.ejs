@@ -13,10 +13,13 @@
                         </div>
                         <span class="price"><%=products.price%> .-</span><br><br>
                         <a href="/view/<%= products._id %>" class="btn btn-sm btn-outline-secondary" id="btn">View More</a>
+                        <%  if(!currentUser){ %>
+                            <a href="/<%= products._id %>/add-to-cart" class="btn btn-dark pull-right" role="button" id="btn-add">Add to cart</a>
+                        <%  }else if(currentUser && currentUser.status === 'Buyer' || currentUser && currentUser.isAdmin){ %>
                         <a href="/<%= products._id %>/add-to-cart" class="btn btn-dark pull-right" role="button" id="btn-add">Add to cart</a>
+                        <% } %>
                     </div><br><br>
                 </div>
-        
             <% }) %> 
         </section> 
     </div>

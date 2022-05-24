@@ -77,7 +77,11 @@
                 </div>
             </div>
             <a href="/" class="btn btn-info" id="view-product-back">Back</a>
+            <%  if(!currentUser){ %>
+                <a href="/<%= product._id %>/add-to-cart" class="btn btn-dark pull-right" role="button" id="btn-add">Add to cart</a>
+            <%  } else if(currentUser && currentUser.status === 'Buyer' || currentUser && currentUser.isAdmin){ %>
             <a href="/<%= product._id %>/add-to-cart" class="btn btn-dark pull-right" role="button" id="btn-add">Add to cart</a>
+            <% } %>
         </div>
     </div>
 <%- include("../partials/footer.ejs") %>
