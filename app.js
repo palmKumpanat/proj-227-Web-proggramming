@@ -23,7 +23,7 @@ app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({extened: true}));
 app.use(methodOverride('_method'));
 app.use(flash());
-//seedDB();
+seedDB();
 
 
 app.use(require('express-session')({
