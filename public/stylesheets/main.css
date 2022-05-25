@@ -572,10 +572,17 @@ ul{
         font-size: 15px;
     }
     .view-background{
-        background-color: rgba(235, 241, 241, 0.507);
+        background-color: rgba(255, 255, 255, 0.507);
         display: block;
-        padding: 15%;
+        margin-top: 0.5%;
+        padding: 5%;
         width: 100%;
+    }
+    .product-img-view{
+        display: inline-block;
+        margin-top: -5%;
+        width: 50rem;
+        border: rgb(235, 233, 233) solid;
     }
 }
 
